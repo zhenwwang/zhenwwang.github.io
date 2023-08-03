@@ -82,13 +82,13 @@
                 <div class="col-md-4 col-md-offset-4 text-center">
                     <ul class="nav nav-pills nav-justified">
                         <li>
-                            <a href="https://zhenwwang.github.io/langrecol">
+                            <a href="https://zhenwwang.github.io/langrecol/files/LangRecol_SIGGRAPH23_Wang.pdf">
                             <image src="img/paper.png" height="60px">
                                 <h4><strong>Paper</strong></h4>
                             </a>
                         </li>
                         <li>
-                            <a href="https://zhenwwang.github.io/langrecol">
+                            <a href="https://zhenwwang.github.io/langrecol/files/Sup_LangRecol_SIGGRAPH23_Wang.pdf">
                             <image src="img/paperclip.png" height="60px">
                                 <h4><strong>Supplementary material</strong></h4>
                             </a>
@@ -124,9 +124,76 @@
                     Abstract
                 </h3>
                 <p class="text-justify">
-                    Adjusting the photo color to associate with some design elements is an essential way for a graphic design to effectively deliver its message and make it aesthetically pleasing. However, existing tools and previous works face a dilemma between the ease of use and level of expressiveness. To this end, we introduce an interactive language-based approach for photo recoloring, which provides an intuitive system that can assist both experts and novices on graphic design. Given a graphic design containing a photo that needs to be recolored, our model can predict the source colors and the target regions, and then recolor the target regions with the source colors based on the given language-based instruction. The multi-granularity of the instruction allows diverse user intentions. The proposed novel task faces several unique challenges, including: 1) color accuracy for recoloring with exactly the same color from the target design element as specified by the user; 2) multi-granularity instructions for parsing instructions correctly to generate a specific result or multiple plausible ones; and 3) locality for recoloring in semantically meaningful local regions to preserve original image semantics. To address these challenges, we propose a model called LangRecol with two main components: the language-based source color prediction module and the semantic-palette-based photo recoloring module. We also introduce an approach for generating a synthetic graphic design dataset with instructions to enable model training. We evaluate our model via extensive experiments and user studies. We also discuss several practical applications, showing the effectiveness and practicality of our approach.
+                    Adjusting the photo color to associate with some design elements is an essential way for a graphic design to effectively deliver its message and make it aesthetically pleasing. However, existing tools and previous works face a dilemma between the ease of use and level of expressiveness. To this end, we introduce an interactive language-based approach for photo recoloring, which provides an intuitive system that can assist both experts and novices on graphic design. Given a graphic design containing a photo that needs to be recolored, our model can predict the source colors and the target regions, and then recolor the target regions with the source colors based on the given language-based instruction. The multi-granularity of the instruction allows diverse user intentions. The proposed novel task faces several unique challenges, including: 1) <b>color accuracy</b> for recoloring with exactly the same color from the target design element as specified by the user; 2) <b>multi-granularity instructions</b> for parsing instructions correctly to generate a specific result or multiple plausible ones; and 3) <b>locality</b> for recoloring in semantically meaningful local regions to preserve original image semantics. To address these challenges, we propose a model called LangRecol with two main components: the language-based source color prediction module and the semantic-palette-based photo recoloring module. We also introduce an approach for generating a synthetic graphic design dataset with instructions to enable model training. We evaluate our model via extensive experiments and user studies. We also discuss several practical applications, showing the effectiveness and practicality of our approach.
                 </p>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Method
+                </h3>
+                <img src="img/pipeline_overview.png" style="margin:auto;max-width:100%" align="middle">
+                <br/>
+                <br/>
+                <p class="text-justify">
+                    <b>Overview of our pipeline.</b> There are two key components in our pipeline: (1) <b>language-based source color prediction</b> aims to predict the source colors from the user-specified design elements (i.e., “title”); (2) <b>semantic-palette-based photo recoloring</b> aims to recolor the user-specified local regions (i.e., “blue sofa”) in the photo with the predicted source colors.
+                </p>
+				</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Results
+                </h3>
+                <img src="img/recolored_results.png" style="margin:auto;max-width:100%" align="middle">
+                <br/>
+                <br/>
+                <p class="text-justify">
+                    <b>Our language-based photo recoloring results on graphic designs.</b> For each design case, we show the original design on the left and our result(s) on the right, with the predicted source color and the input instruction below. We highlight the words related to the source colors and target regions in bold.
+                </p>
+                <img src="img/qualitative_overall_results.png" style="margin:auto;max-width:100%" align="middle">
+                <br/>
+                <br/>
+                <p class="text-justify">
+                    <b>Comparison results with state-of-the-art methods.</b> We compare with two language-based image recoloring methods: Open-edit  [Liu et al. 2020] and ManiGAN [Li et al. 2020b]; and a graphic design photo recoloring method GDRecolor [Zhao et al. 2021].
+                </p>
+				</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Applications
+                </h3>
+                <h4>
+                    1. Design template pairing
+                </h4>
+                <img src="img/application_1_S.png" style="margin:auto;max-width:100%" align="middle">
+                <p class="text-justify">
+                    <b>Design template pairing.</b> Our model can adjust photo color based on a set of design templates for quick brainstorm and authoring.
+                </p>
+                <h4>
+                    2. Brochure Photo Recoloring
+                </h4>
+                <img src="img/application_2_S.png" style="margin:auto;max-width:100%" align="middle">
+                <p class="text-justify">
+                    <b>Brochure Photo Recoloring.</b> Our model can recolor multiple photos with a single design.
+                </p>
+                <h4>
+                    3. Recoloring a design collection
+                </h4>
+                <img src="img/application_3_S.png" style="margin:auto;max-width:100%" align="middle">
+                <p class="text-justify">
+                    <b>Recoloring a design collection.</b> We show a design case for banners used in online promotion.
+                </p>
+                <h4>
+                    4. Iterative graphic design photo recoloring
+                </h4>
+                <img src="img/application_4_S.png" style="margin:auto;max-width:100%" align="middle">
+				</div>
         </div>
 
 <!-- 
@@ -148,8 +215,26 @@
                 <h3>
                     Citation
                 </h3>
-                <div class="form-group col-md-10 col-md-offset-1">
+                <div class="form-group col-md-20 col-md-offset-0">
                     <textarea id="bibtex" class="form-control" readonly>
+@article{10.1145/3592111,
+    author = {Wang, Zhenwei and Zhao, Nanxuan and Hancke, Gerhard and Lau, Rynson W.H.},
+    title = {Language-Based Photo Color Adjustment for Graphic Designs},
+    year = {2023},
+    issue_date = {August 2023},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {42},
+    number = {4},
+    issn = {0730-0301},
+    url = {https://doi.org/10.1145/3592111},
+    doi = {10.1145/3592111},
+    journal = {ACM Trans. Graph.},
+    month = {jul},
+    articleno = {101},
+    numpages = {16},
+    keywords = {language-guided, data-driven graphic design, photo recoloring}
+    }
                     </textarea>
                 </div>
             </div>
