@@ -95,7 +95,7 @@
       <a href="#teaching" class="w3-bar-item w3-button w3-small" style="width:25% !important">TEACHING</a>
       <a href="#awards" class="w3-bar-item w3-button w3-small" style="width:25% !important">AWARDS</a>
       <a class="w3-bar-item w3-button w3-small" style="width:25% !important"><img src="./images/dundun_trans.png"
-          style="width:25%"></a> 
+          style="width:25%"></a>
     </div>
   </div>
 
@@ -165,6 +165,55 @@
       <table
         style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
         <tbody>
+          <tr onmouseout="rrl_stop()" onmouseover="rrl_start()" bgcolor="#ffffff">
+            <td class="w3-hide-small" style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id='rrl_image'>
+                  <img src="images/rrl_1.png" width="160">
+                </div>
+                <img src='images/rrl_0.png' width="160">
+              </div>
+              <script type="text/javascript">
+                function rrl_start() {
+                  document.getElementById('rrl_image').style.opacity = "1";
+                }
+
+                function rrl_stop() {
+                  document.getElementById('rrl_image').style.opacity = "0";
+                }
+                rrl_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://yuhaoliu7456.github.io/RRL-Net/">
+                <papertitle class="w3-medium">Recasting Regional Lighting for Shadow Removal</papertitle>
+              </a>
+              <br>
+              <a href="https://yuhaoliu7456.github.io/">Yuhao Liu</a>,
+              <a href="https://zhke.io/">Zhanghan ke</a>,
+              <a href="https://kkbless.github.io/">Ke Xu</a>,
+              <a href="https://scholar.google.com/citations?user=cBFup5QAAAAJ&hl=en">Fang Liu</a>,
+              <strong>Zhenwei Wang</strong>,
+              <a href="https://www.cs.cityu.edu.hk/~rynson/">Rynson W.H. Lau</a>,
+              <br>
+              <em>AAAI, 2024</em>
+              <br>
+              <a>arXiv</a>
+              /
+              <a href="https://yuhaoliu7456.github.io/RRL-Net/">project page</a>
+              <!-- <p class="w3-text-red">
+                Present LangRecol, a novel language-based approach for recoloring photos in graphic designs.
+              </p> -->
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <!-- PAPER Section -->
+      <table
+        style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tbody>
           <tr onmouseout="langrecol_stop()" onmouseover="langrecol_start()" bgcolor="#ffffff">
             <td class="w3-hide-small" style="padding:20px;width:25%;vertical-align:middle">
               <div class="one">
@@ -185,7 +234,9 @@
               </script>
             </td>
             <td style="padding:20px;width:75%;vertical-align:middle">
-              <a href="https://zhenwwang.github.io/langrecol"><papertitle class="w3-medium">Language-based Photo Color Adjustment for Graphic Designs</papertitle></a>
+              <a href="https://zhenwwang.github.io/langrecol">
+                <papertitle class="w3-medium">Language-based Photo Color Adjustment for Graphic Designs</papertitle>
+              </a>
               <br>
               <strong>Zhenwei Wang</strong>,
               <a href="http://nxzhao.com/">Nanxuan Zhao</a>,
@@ -208,52 +259,6 @@
         </tbody>
       </table>
 
-      <!-- PAPER Section -->
-      <table
-        style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-        <tbody>
-          <tr onmouseout="rrl_stop()" onmouseover="rrl_start()" bgcolor="#ffffff">
-            <td class="w3-hide-small" style="padding:20px;width:25%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='rrl_image'>
-                  <img src="images/rrl_1.png" width="160">
-                </div>
-                <img src='images/rrl_0.png' width="160">
-              </div>
-              <script type="text/javascript">
-                function rrl_start() {
-                  document.getElementById('rrl_image').style.opacity = "1";
-                }
-
-                function rrl_stop() {
-                  document.getElementById('rrl_image').style.opacity = "0";
-                }
-                rrl_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-              <a href="https://yuhaoliu7456.github.io/RRL-Net/"><papertitle class="w3-medium">Recasting Regional Lighting for Shadow Removal</papertitle></a>
-              <br>
-              <a href="https://yuhaoliu7456.github.io/">Yuhao Liu</a>,
-              <a href="https://zhke.io/">Zhanghan ke</a>,
-              <a href="https://kkbless.github.io/">Ke Xu</a>,
-              <a href="https://scholar.google.com/citations?user=cBFup5QAAAAJ&hl=en">Fang Liu</a>,
-              <strong>Zhenwei Wang</strong>,
-              <a href="https://www.cs.cityu.edu.hk/~rynson/">Rynson W.H. Lau</a>,
-              <br>
-              <em>AAAI, 2024</em>
-              <br>
-              <a href="">arXiv</a>
-              /
-              <a href="https://yuhaoliu7456.github.io/RRL-Net/">project page</a>
-              <!-- <p class="w3-text-red">
-                Present LangRecol, a novel language-based approach for recoloring photos in graphic designs.
-              </p> -->
-            </td>
-          </tr>
-
-        </tbody>
-      </table>
     </div>
 
     <!-- Teaching Section -->
@@ -323,7 +328,7 @@
         <!-- End of Statcounter Code -->
         visit.
         Powered by <a class="w3-small" href="https://www.w3schools.com/w3css/default.asp">w3.css</a> and <a
-        class="w3-small" href="https://github.com/jonbarron/jonbarron_website">Jon
+          class="w3-small" href="https://github.com/jonbarron/jonbarron_website">Jon
           Baron</a>. Last updated: Oct. 2023.
       </p>
       <!-- End footer -->
