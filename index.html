@@ -175,7 +175,66 @@
     <!-- PUBLICATION Section -->
     <div class="w3-content w3-container w3-justify w3-text-black w3-padding-32" id="publication">
       <h3 class="w3-text-black">Selected Publications</h3>
+      <p> (*equal contribution) </p>
       <hr style="width:200px" class="w3-opacity-off">
+
+      <!-- PAPER Section -->
+      <table
+        style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+        <tbody>
+          <tr onmouseout="phidias_stop()" onmouseover="phidias_start()" bgcolor="#ffffff">
+            <td class="w3-hide-small" style="padding:20px;width:25%;vertical-align:middle">
+              <div class="one">
+                <div class="two" id="phidias_video" style="opacity: 0;">
+                  <video width="100%" height="100%" muted=""
+                    autoplay="" loop="">
+                    <source src="videos/phidias.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video></div>
+
+                  <img src="images/phidias.jpg" width="100%">
+              </div>
+              <script type="text/javascript">
+                function phidias_start() {
+                  document.getElementById('phidias_video').style.opacity = "1";
+                }
+
+                function phidias_stop() {
+                  document.getElementById('phidias_video').style.opacity = "0";
+                }
+                rrl_stop()
+              </script>
+            </td>
+            <td style="padding:20px;width:75%;vertical-align:middle">
+              <a href="https://RAG-3D.github.io/">
+                <papertitle class="w3-medium">Phidias: A Generative Model for Creating 3D  Content from Text, Image, and 3D Conditions with Reference-Augmented  Diffusion
+                </papertitle>
+              </a>
+              <br>
+              <strong>Zhenwei Wang*</strong>,
+              <a href="https://tengfei-wang.github.io/">Tengfei Wang*</a>,
+              <a href="https://github.com/ZexinHe">Zexin He</a>,
+              <a href="https://rfidblog.org.uk/">Gerhard Hancke</a>,
+              <a href="https://liuziwei7.github.io/">Ziwei Liu</a>
+              <a href="https://www.cs.cityu.edu.hk/~rynson/">Rynson W.H. Lau</a>,
+              <br>
+              <em>preprint, 2024</em>
+              <br>
+              <a href="https://arxiv.org/abs/2409.11406">arXiv</a>
+              /
+              <a href="https://RAG-3D.github.io/">project page</a>
+              /
+              <a href="https://github.com/3DTopia/Phidias-Diffusion">code</a>
+              /
+              <a href="https://youtu.be/MFnHgBWI7Nc?si=TTt8UqUOU8ZHZDNq">video</a>
+              <p class="w3-text-red">
+                A 3D diffusion model with RAG, supporting 3D generation from text, image, and existing 3D models.
+              </p>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
 
       <!-- PAPER Section -->
       <table
@@ -223,6 +282,8 @@
               <a href="https://3dthemestation.github.io/">project page</a>
               /
               <a href="https://github.com/3DTopia/ThemeStation">code</a>
+              /
+              <a href="https://youtu.be/q6afxQXRl_o?si=tTxzVfyxu5fblAWC">video</a>
               <p class="w3-text-red">
                 Generate a gallery of 3D assets with consistent themes from a few exemplars.
               </p>
@@ -310,8 +371,8 @@
                 <papertitle class="w3-medium">Language-based Photo Color Adjustment for Graphic Designs</papertitle>
               </a>
               <br>
-              <strong>Zhenwei Wang</strong>,
-              <a href="http://nxzhao.com/">Nanxuan Zhao</a>,
+              <strong>Zhenwei Wang*</strong>,
+              <a href="http://nxzhao.com/">Nanxuan Zhao*</a>,
               <a href="http://rfidblog.org.uk/">Gerhard Hancke</a>,
               <a href="https://www.cs.cityu.edu.hk/~rynson/">Rynson W.H. Lau</a>,
               <br>
@@ -401,7 +462,7 @@
         visit.
         Powered by <a class="w3-small" href="https://www.w3schools.com/w3css/default.asp">w3.css</a> and <a
           class="w3-small" href="https://github.com/jonbarron/jonbarron_website">Jon
-          Baron</a>. Last updated: Jun. 2024.
+          Baron</a>. Last updated: Sep. 2024.
       </p>
       <!-- End footer -->
     </footer>
