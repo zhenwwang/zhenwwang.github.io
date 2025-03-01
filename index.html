@@ -194,14 +194,12 @@
           <tr onmouseout="mage_stop()" onmouseover="mage_start()" bgcolor="#ffffff">
             <td class="w3-hide-small" style="padding:20px;width:25%;vertical-align:middle">
               <div class="one">
-                <div class="two" id="mage_video" style="opacity: 0;">
+                <div class="two" id="mage_video" style="opacity: 1;">
                   <video width="100%"  muted=""
-                    autoplay="" loop="">
-                    <source src="videos/mage.mp4" type="video/mp4">
+                    autoplay="" loop="" style="border-radius:0.4cm;">
+                    <source src="videos/mage.webm" type="video/mp4">
                     Your browser does not support the video tag.
                   </video></div>
-
-                  <img src="images/mage.png" width="100%">
               </div>
               <script type="text/javascript">
                 function mage_start() {
@@ -209,13 +207,13 @@
                 }
 
                 function mage_stop() {
-                  document.getElementById('mage_video').style.opacity = "0";
+                  document.getElementById('mage_video').style.opacity = "1";
                 }
                 rrl_stop()
               </script>
             </td>
             <td style="padding:20px;width:75%;vertical-align:middle">
-              <a href="">
+              <a href="https://www.whyy.site/paper/mage">
                 <papertitle class="w3-medium">MAGE : Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model
                 </papertitle>
               </a>
@@ -231,11 +229,11 @@
               <br>
               <a href="">arXiv</a>
               /
-              <a href="">project page</a>
+              <a href="https://www.whyy.site/paper/mage">project page</a>
               /
               <a href="">code</a>
               <p class="w3-text-red">
-                A multi-view G-buffer estimation model for single image to material-aware 3D reconstruction.
+                A G-buffer estimation model for single image to high-quality material-aware 3D reconstruction.
               </p>
             </td>
           </tr>
