@@ -845,6 +845,18 @@
         font-size: 12px !important;
         margin: 3px !important;
       }
+      
+      /* Mobile video optimizations */
+      .project-media video {
+        max-height: 200px !important;
+        object-fit: cover !important;
+      }
+      
+      /* Ensure videos are responsive on mobile */
+      video {
+        width: 100% !important;
+        height: auto !important;
+      }
       }
   </style>
 </head>
@@ -991,7 +1003,7 @@
                 <td class="media-col">
                   <div class="conference-badge">Technical Report</div>
                   <div class="project-media">
-                    <video width="100%" muted autoplay loop>
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
                       <source src="videos/HYWorld.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
@@ -1040,7 +1052,7 @@
                 <td class="media-col">
                   <div class="conference-badge">CVPR 2025</div>
                   <div class="project-media">
-                    <video width="100%" muted autoplay loop>
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
                       <source src="videos/mage.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
@@ -1087,7 +1099,7 @@
                 <td class="media-col">
                   <div class="conference-badge">ICLR 2025</div>
                   <div class="project-media">
-                    <video width="100%" muted autoplay loop>
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
                       <source src="videos/phidias.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
@@ -1135,7 +1147,7 @@
                 <td class="media-col">
                   <div class="conference-badge">SIGGRAPH 2024</div>
                   <div class="project-media">
-                    <video width="100%" muted autoplay loop>
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
                       <source src="videos/themestation.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
@@ -1377,36 +1389,91 @@
       }
     });
 
-    // Dundun click interaction for both desktop and mobile
-    document.addEventListener('DOMContentLoaded', function() {
-      const dundunBg = document.querySelector('.dundun-bg');
-      const dundunMessage = document.querySelector('.dundun-message');
+      // Dundun click interaction for both desktop and mobile
+  document.addEventListener('DOMContentLoaded', function() {
+    const dundunBg = document.querySelector('.dundun-bg');
+    const dundunMessage = document.querySelector('.dundun-message');
+    
+    if (dundunBg && dundunMessage) {
+      // Initialize desktop visibility state
+      let desktopVisible = true; // Default state based on CSS
       
-      if (dundunBg && dundunMessage) {
-        // Initialize desktop visibility state
-        let desktopVisible = true; // Default state based on CSS
+      // Unified click interaction - works for all screen sizes
+      dundunBg.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        // Unified click interaction - works for all screen sizes
-        dundunBg.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Check current window width to determine behavior
-          if (window.innerWidth <= 1060) {
-            // Small screen: toggle show class (mobile behavior)
-            dundunMessage.classList.toggle('show');
+        // Check current window width to determine behavior
+        if (window.innerWidth <= 1060) {
+          // Small screen: toggle show class (mobile behavior)
+          dundunMessage.classList.toggle('show');
+        } else {
+          // Large screen: toggle visibility (desktop behavior)
+          desktopVisible = !desktopVisible;
+          if (desktopVisible) {
+            dundunMessage.style.display = 'block';
           } else {
-            // Large screen: toggle visibility (desktop behavior)
-            desktopVisible = !desktopVisible;
-            if (desktopVisible) {
-              dundunMessage.style.display = 'block';
-            } else {
-              dundunMessage.style.display = 'none';
+            dundunMessage.style.display = 'none';
+          }
+        }
+      });
+    }
+    
+    // Handle video playback on mobile
+    const videos = document.querySelectorAll('video[autoplay]');
+    let userInteracted = false;
+    
+    // Track user interaction
+    const markUserInteraction = () => {
+      userInteracted = true;
+      document.removeEventListener('touchstart', markUserInteraction);
+      document.removeEventListener('click', markUserInteraction);
+      document.removeEventListener('scroll', markUserInteraction);
+    };
+    
+    document.addEventListener('touchstart', markUserInteraction, { once: true });
+    document.addEventListener('click', markUserInteraction, { once: true });
+    document.addEventListener('scroll', markUserInteraction, { once: true });
+    
+    // Use Intersection Observer to play videos when they come into view
+    if ('IntersectionObserver' in window) {
+      const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const video = entry.target;
+          if (entry.isIntersecting) {
+            // Try to play when video comes into view
+            if (userInteracted || !video.paused) {
+              video.play().catch(() => {
+                // Silent fail if can't play
+              });
             }
           }
         });
-      }
-    });
+      }, { threshold: 0.5 });
+      
+      videos.forEach(video => {
+        videoObserver.observe(video);
+        
+        // Also try immediate play
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Auto-play was prevented - this is normal on mobile
+          });
+        }
+      });
+    } else {
+      // Fallback for browsers without IntersectionObserver
+      videos.forEach(video => {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Auto-play was prevented
+          });
+        }
+      });
+    }
+  });
   </script>
 
 </body>
