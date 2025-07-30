@@ -1,60 +1,104 @@
+/* Main color scheme: #2c3e50 (dark blue), #3498db (blue), #f8f9fa (light background) */
+
+/* Link styles */
 a {
-  color: #1772d0;
+  color: #3498db;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 a:focus,
 a:hover {
-  color: #f09228;
+  color: #2980b9;
   text-decoration: none;
 }
 
+/* Typography */
 body,
 td,
 th,
 tr,
 p,
 a {
-  font-size: 14px
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 strong {
   font-size: 14px;
+  font-weight: 600;
 }
 
-heading {
-  font-size: 22px;
+h1, h2, h3, h4, h5, h6 {
+  color: #2c3e50;
+  font-weight: 600;
 }
 
-papertitle {
-  font-weight: 700
+h1 {
+  font-size: 28px;
 }
 
-name {
-  font-size: 32px;
+h3 {
+  font-size: 20px;
 }
 
-.one {
-  width: 160px;
-  height: 160px;
-  position: relative;
+h4 {
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.two {
-  width: 160px;
-  height: 160px;
-  position: absolute;
-  transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -webkit-transition: opacity .2s ease-in-out;
+/* Project image hover effects */
+.project-media .two {
+  transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
 }
 
+/* Fade transition utility */
 .fade {
-  transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -webkit-transition: opacity .2s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -webkit-transition: opacity 0.3s ease-in-out;
 }
 
+/* Highlight span for search results */
 span.highlight {
   background-color: #ffffd0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3498db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2980b9;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Selection colors */
+::selection {
+  background-color: #3498db;
+  color: white;
+}
+
+::-moz-selection {
+  background-color: #3498db;
+  color: white;
 }
