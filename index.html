@@ -9,8 +9,11 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:100,300,400,500,700,900">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css"
+    integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
   <link rel="icon" href="images/dundun_trans2.png">
 
   <style>
@@ -121,15 +124,15 @@
       transform: scale(1.1);
     }
 
-         /* Research interests styling */
-     .research-interests {
-       margin-top: 0px;
-       text-align: left;
-       font-size: 13px;
-       line-height: 1.4;
-       padding: 0 10px;
-       width: 100%;
-     }
+    /* Research interests styling */
+    .research-interests {
+      margin-top: 0px;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.4;
+      padding: 0 10px;
+      width: 100%;
+    }
 
     .research-interests p {
       margin-bottom: 8px;
@@ -286,6 +289,7 @@
     .project-container {
       width: 100%;
       margin-bottom: 35px;
+      overflow: visible;
     }
 
     .pub-table .media-col {
@@ -295,6 +299,7 @@
       vertical-align: middle;
       text-align: center;
       position: relative;
+      overflow: visible;
     }
 
     .project-media {
@@ -303,7 +308,7 @@
       display: inline-block;
       width: 90%;
       border-radius: 8px;
-      overflow: hidden;
+      overflow: visible;
     }
 
     .project-media video,
@@ -316,7 +321,11 @@
 
     .project-media:hover video,
     .project-media:hover img {
-      transform: scale(1.02);
+      transform: scale(1.5);
+      z-index: 1000;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
     }
 
     .media-col .conference-badge {
@@ -332,7 +341,7 @@
       border-radius: 5px !important;
       font-size: 11px !important;
       font-weight: bold !important;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
       white-space: nowrap;
       line-height: 1 !important;
       box-sizing: border-box;
@@ -351,6 +360,7 @@
       width: 100%;
       border-collapse: separate;
       margin-bottom: 15px;
+      overflow: visible;
     }
 
     .pub-table td {
@@ -506,6 +516,7 @@
       .back-to-top {
         display: none;
       }
+
       .back-to-top.show {
         display: flex !important;
       }
@@ -543,7 +554,7 @@
       max-width: 180px;
       font-size: 11px;
       color: #2c3e50;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       z-index: 999;
       border: 1px solid rgba(52, 152, 219, 0.4);
       line-height: 1.4;
@@ -653,18 +664,20 @@
     }
 
     /* Mobile responsive */
-    @media print, screen and (max-width: 1060px) {
+    @media print,
+    screen and (max-width: 1060px) {
       .wrapper {
         width: auto;
         margin: 0;
       }
-      
-      header, section {
+
+      header,
+      section {
         float: none;
         position: static;
         width: auto;
       }
-      
+
       /* Mobile navigation adjustments */
       .mobile-nav {
         background-color: rgba(255, 255, 255, 0.9);
@@ -672,23 +685,23 @@
         padding: 8px 10px;
         margin-bottom: 5px;
       }
-      
+
       .mobile-nav-list {
         gap: 20px;
         justify-content: space-evenly;
       }
-      
+
       .mobile-nav-item {
         font-size: 12px;
       }
-      
+
       .mobile-nav-item a {
         padding: 4px 8px;
         font-size: 12px;
         border-radius: 15px;
         letter-spacing: 0.2px;
       }
-      
+
       .mobile-nav-item a:hover {
         transform: translateY(-1px);
         box-shadow: 0 1px 4px rgba(52, 152, 219, 0.3);
@@ -700,41 +713,41 @@
         margin-bottom: 0;
         text-align: center;
       }
-      
+
       section {
         padding: 0 20px;
       }
-      
+
       /* On mobile, show only conference badge from project-media */
       /* Mobile: show media above content */
       .pub-table {
         display: block;
       }
-      
+
       .pub-table tbody,
       .pub-table tr {
         display: block;
       }
-      
+
       .pub-table .media-col {
         display: block;
         width: 100%;
         text-align: center;
         margin-bottom: 15px;
       }
-      
+
       .pub-table .content-col {
         width: 100%;
         display: block;
       }
-      
+
       .project-media {
         display: block;
         position: static;
         width: 70%;
         margin: 0 auto;
       }
-      
+
       .media-col .conference-badge {
         display: block;
         position: relative;
@@ -755,11 +768,11 @@
       .education-list li {
         padding-left: 15px;
       }
-      
+
       .education-list li::before {
         left: 0;
       }
-      
+
       .education-list .degree,
       .education-list .date {
         float: none;
@@ -767,7 +780,7 @@
         width: 100%;
         text-align: left;
       }
-      
+
       .education-list .date {
         font-size: 12px;
         color: #7f8c8d;
@@ -775,7 +788,7 @@
       }
 
 
-      
+
       /* Mobile dundun layout - side by side */
       .dundun-bg {
         position: fixed;
@@ -810,13 +823,14 @@
         max-width: none;
         font-size: 10px;
         color: #2c3e50;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
         z-index: 999;
         border: 1px solid rgba(52, 152, 219, 0.4);
-        display: none; /* Hidden by default */
+        display: none;
+        /* Hidden by default */
         line-height: 1.4;
       }
-      
+
       /* Hide back to top button on mobile */
       .back-to-top,
       .back-to-top.show {
@@ -833,31 +847,31 @@
       .dundun-message::before {
         display: none;
       }
-      
+
       /* Adjust project media margin on mobile */
       .project-media {
         margin-top: 10px;
       }
-      
+
       /* Make text buttons more mobile-friendly */
       .text-btn {
         padding: 8px 12px !important;
         font-size: 12px !important;
         margin: 3px !important;
       }
-      
+
       /* Mobile video optimizations */
       .project-media video {
         max-height: 200px !important;
         object-fit: cover !important;
       }
-      
+
       /* Ensure videos are responsive on mobile */
       video {
         width: 100% !important;
         height: auto !important;
       }
-      }
+    }
   </style>
 </head>
 
@@ -871,7 +885,7 @@
         <li class="mobile-nav-item"><a href="#experience">Experience</a></li>
         <li class="mobile-nav-item"><a href="#projects">Publications</a></li>
       </ul>
-  </nav>
+    </nav>
 
     <!-- Left Sidebar Header -->
     <header>
@@ -882,9 +896,9 @@
       <h1>Zhenwei (Zavier) Wang</h1>
 
       <div class="position">Researcher</div>
-      
+
       <a href="https://hunyuan.tencent.com/" class="affiliation" rel="noopener">Tencent Hunyuan</a>
-      
+
       <email>zwwang96[at]gmail.com</email>
 
       <div class="social-icons">
@@ -920,24 +934,28 @@
       <div class="about-section">
         <p>
           I am a researcher at Tencent Hunyuan, working in the world model team.
-          I received my Ph.D. degree from the Department of Computer Science, City University of Hong Kong (<a href="https://www.cityu.edu.hk/">CityU</a>),
+          I received my Ph.D. degree from the Department of Computer Science, City University of Hong Kong (<a
+            href="https://www.cityu.edu.hk/">CityU</a>),
           under the supervision of
           <a href="https://www.cs.cityu.edu.hk/~rynson/">Prof. Rynson W.H. Lau</a> and
           <a href="https://rfidblog.org.uk/">Prof. Gerhard Hancke</a>.
-          I was also a visiting scholar at <a href="https://vcg.seas.harvard.edu/">VCG@Harvard University</a>, advised by <a href="https://vcg.seas.harvard.edu/people">Prof. Hanspeter Pfister</a>.
+          I was also a visiting scholar at <a href="https://vcg.seas.harvard.edu/">VCG@Harvard University</a>, advised
+          by <a href="https://vcg.seas.harvard.edu/people">Prof. Hanspeter Pfister</a>.
         </p>
         <p>
-          During my Ph.D. studies, I was fortunate to work with <a href="https://tengfei-wang.github.io/">Tengfei Wang</a> and <a
-            href="https://liuziwei7.github.io/">Ziwei Liu</a> from <a href="https://www.shlab.org.cn/">Shanghai AI Lab</a> and <a href="https://www.mmlab-ntu.com/">MMLab@NTU</a>.
+          During my Ph.D. studies, I was fortunate to work with <a href="https://tengfei-wang.github.io/">Tengfei
+            Wang</a> and <a href="https://liuziwei7.github.io/">Ziwei Liu</a> from <a
+            href="https://www.shlab.org.cn/">Shanghai AI Lab</a> and <a href="https://www.mmlab-ntu.com/">MMLab@NTU</a>.
           I was also lucky to closely collaborate with <a href="http://nxzhao.com/">Nanxuan Zhao</a> from Adobe
           Research. I received my B.Eng. degree from <a href="https://www.xmu.edu.cn/">Xiamen University</a>.
         </p>
         <p>
-          I'm interested in generative AI, including world models, video generation, 3D reconstruction, and 3D asset generation.
+          I'm interested in generative AI, including world models, video generation, 3D reconstruction, and 3D asset
+          generation.
         </p>
       </div>
 
-    <!-- News Section -->
+      <!-- News Section -->
       <h2 id="news">News</h2>
       <div class="news-section">
         <!-- <div class="job-seeking">
@@ -947,24 +965,28 @@
         <ul class="news-list">
           <li>
             <strong>[Aug. 2025]</strong>
+            <span class="news-content">Three papers accepted to SIGGRAPH Asia 2025. See you in Hong Kong!</span>
+          </li>
+          <li>
+            <strong>[Aug. 2025]</strong>
             <span class="news-content">HunyuanWorld 1.0 is released. Check it out!</span>
-      </li>
-      <li>
+          </li>
+          <li>
             <strong>[Feb. 2025]</strong>
             <span class="news-content">One paper accepted to CVPR 2025.</span>
-      </li>
-      <li>
+          </li>
+          <li>
             <strong>[Feb. 2025]</strong>
             <span class="news-content">One paper accepted to ICLR 2025. See you in Singapore!</span>
-      </li>
-      <li>
+          </li>
+          <li>
             <strong>[Apr. 2024]</strong>
             <span class="news-content">One paper accepted to SIGGRAPH 2024. See you in Denver!</span>
-      </li>
-      <li>
+          </li>
+          <li>
             <strong>[Dec. 2023]</strong>
             <span class="news-content">One paper accepted to AAAI 2024.</span>
-      </li>
+          </li>
           <li>
             <strong>[Apr. 2023]</strong>
             <span class="news-content">One paper accepted to SIGGRAPH 2023 (journal track).</span>
@@ -993,25 +1015,25 @@
             <div class="date">09.2023 - 10.2024</div>
           </li>
         </ul>
-    </div>
+      </div>
 
       <!-- Open-source Project Section -->
       <h2 id="projects">Open-Source Projects</h2>
       <div class="publications-section">
-        
-        <!-- MAGE Project -->
+
+        <!-- HY World 1.0 Project -->
         <div class="project-container">
           <table class="pub-table">
-        <tbody>
+            <tbody>
               <tr>
                 <td class="media-col">
                   <div class="conference-badge">Technical Report</div>
                   <div class="project-media">
                     <video width="100%" muted autoplay loop playsinline preload="metadata">
                       <source src="videos/HYWorld.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                      Your browser does not support the video tag.
                     </video>
-              </div>
+                  </div>
                 </td>
                 <td class="content-col">
                   <h4 class="pub-title">
@@ -1019,24 +1041,24 @@
                       HunyuanWorld 1.0: Generating Immersive, Explorable, and Interactive 3D Worlds from Words or Pixels
                     </a>
                   </h4>
-                  
+
                   <p class="pub-authors">
                     Core Contributor
                   </p>
-                  
+
                   <p class="pub-venue">Tencent Hunyuan3D, July 2025</p>
-                  
+
                   <div class="text-links">
                     <a href="https://arxiv.org/abs/2507.21809" class="text-btn">arXiv</a>
                     <a href="https://3d-models.hunyuan.tencent.com/world/" class="text-btn">Project Page</a>
                     <a href="https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0" class="text-btn">Code</a>
                     <a href="https://3d.hunyuan.tencent.com/sceneTo3D" class="text-btn">Try It Now</a>
                   </div>
-                  
+
                   <p class="pub-description">
                     Immersive and Editable 3D scene generation from images or texts.
                   </p>
-            </td>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -1047,6 +1069,156 @@
       <h2 id="publications">Selected Publications</h2>
       <div class="publications-section">
         <p>(*equal contribution, ^intern, †corresponding author)</p>
+
+        <!-- StyleSculptor Paper -->
+        <div class="project-container">
+          <table class="pub-table">
+            <tbody>
+              <tr>
+                <td class="media-col">
+                  <div class="conference-badge">SIGGRAPH Asia 2025</div>
+                  <div class="project-media">
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
+                      <source src="videos/style_sculptor.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </td>
+                <td class="content-col">
+                  <h4 class="pub-title">
+                    <a href="">
+                      StyleSculptor: Zero-Shot Style-Controllable 3D Asset Generation with Texture-Geometry Dual Guidance
+                    </a>
+                  </h4>
+
+                  <p class="pub-authors">
+                    Zefan Qu,
+                    <strong>Zhenwei Wang<sup>†</sup></strong>,
+                    Haoyuan Wang,
+                    Ke Xu,
+                    Gerhard Hancke,
+                    Rynson W.H. Lau
+                  </p>
+
+                  <p class="pub-venue">Proc. ACM SIGGRAPH Asia, December 2025</p>
+
+                  <div class="text-links">
+                    <a href=""
+                      class="text-btn">arXiv</a>
+                    <a href="" class="text-btn">Project Page</a>
+                    <a href="" class="text-btn">Code</a>
+                  </div>
+
+                  <p class="pub-description">
+                    Long-range 3D world exploration with RGB-D(epth) video diffusion.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <!-- Voyager Paper -->
+        <div class="project-container">
+          <table class="pub-table">
+            <tbody>
+              <tr>
+                <td class="media-col">
+                  <div class="conference-badge">SIGGRAPH Asia 2025</div>
+                  <div class="project-media">
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
+                      <source src="videos/voyager.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </td>
+                <td class="content-col">
+                  <h4 class="pub-title">
+                    <a href="">
+                      Voyager: Long-Range and World-Consistent Video Diffusion for Explorable 3D Scene Generation
+                    </a>
+                  </h4>
+
+                  <p class="pub-authors">
+                    Tianyu Huang,
+                    Wangguandong Zheng,
+                    Tengfei Wang,
+                    Yuhao Liu,
+                    <strong>Zhenwei Wang</strong>,
+                    Junta Wu,
+                    Jie Jiang,
+                    Hui Li,
+                    Rynson W.H. Lau
+                    Wangmeng Zuo,
+                    Chunchao Guo
+                  </p>
+
+                  <p class="pub-venue">ACM Trans. on Graphics (Proc. ACM SIGGRAPH 2025, <span style="color: red;">Journal</span>), December 2025</p>
+
+                  <div class="text-links">
+                    <a href="https://arxiv.org/abs/2506.04225"
+                      class="text-btn">arXiv</a>
+                    <a href="" class="text-btn">Project Page</a>
+                    <a href="" class="text-btn">Code</a>
+                  </div>
+
+                  <p class="pub-description">
+                    Long-range 3D world exploration with RGB-D(epth) video diffusion.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <!-- Shape-for-Motion Paper -->
+        <div class="project-container">
+          <table class="pub-table">
+            <tbody>
+              <tr>
+                <td class="media-col">
+                  <div class="conference-badge">SIGGRAPH Asia 2025</div>
+                  <div class="project-media">
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
+                      <source src="videos/shape-for-motion.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </td>
+                <td class="content-col">
+                  <h4 class="pub-title">
+                    <a href="https://shapeformotion.github.io/">
+                      Shape-for-Motion: Precise and Consistent Video Editing with 3D Proxy
+                    </a>
+                  </h4>
+
+                  <p class="pub-authors">
+                    Yuhao Liu,
+                    Tengfei Wang,
+                    Fang Liu,
+                    <strong>Zhenwei Wang</strong>,
+                    Rynson W.H. Lau
+                  </p>
+
+                  <p class="pub-venue">Proc. ACM SIGGRAPH Asia, December 2025</p>
+
+                  <div class="text-links">
+                    <a href="https://arxiv.org/abs/2506.22432"
+                      class="text-btn">arXiv</a>
+                    <a href="https://shapeformotion.github.io/" class="text-btn">Project Page</a>
+                    <a href="https://github.com/yuhaoliu7456/Shape-for-Motion" class="text-btn">Code</a>
+                  </div>
+
+                  <p class="pub-description">
+                    Diverse and precise video object manipulation with 3D proxy and diffusion rendering.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <!-- MAGE Paper -->
         <div class="project-container">
@@ -1064,244 +1236,248 @@
                 </td>
                 <td class="content-col">
                   <h4 class="pub-title">
-              <a href="https://www.whyy.site/paper/mage">
+                    <a href="https://www.whyy.site/paper/mage">
                       MAGE: Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model
                     </a>
                   </h4>
-                  
+
                   <p class="pub-authors">
                     Haoyuan Wang*,
-              <strong>Zhenwei Wang*</strong>,
+                    <strong>Zhenwei Wang*</strong>,
                     Xiaoxiao Long,
                     Cheng Lin,
                     Gerhard Hancke,
                     Rynson W.H. Lau
                   </p>
-                  
+
                   <p class="pub-venue">CVPR, June 2025</p>
-                  
+
                   <div class="text-links">
-                    <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MAGE__Single_Image_to_Material-Aware_3D_via_the_Multi-View_CVPR_2025_paper.pdf" class="text-btn">PDF</a>
+                    <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MAGE__Single_Image_to_Material-Aware_3D_via_the_Multi-View_CVPR_2025_paper.pdf"
+                      class="text-btn">PDF</a>
                     <a href="https://www.whyy.site/paper/mage" class="text-btn">Project Page</a>
                     <a href="https://github.com/onpix/mage" class="text-btn">Code</a>
                   </div>
-                  
+
                   <p class="pub-description">
-                A G-buffer estimation model for single image to high-quality material-aware 3D reconstruction.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                    A G-buffer estimation model for single image to high-quality material-aware 3D reconstruction.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- Phidias Paper -->
         <div class="project-container">
           <table class="pub-table">
-        <tbody>
+            <tbody>
               <tr>
                 <td class="media-col">
                   <div class="conference-badge">ICLR 2025</div>
                   <div class="project-media">
                     <video width="100%" muted autoplay loop playsinline preload="metadata">
-                    <source src="videos/phidias.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                      <source src="videos/phidias.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
                     </video>
-              </div>
-            </td>
+                  </div>
+                </td>
                 <td class="content-col">
                   <h4 class="pub-title">
-              <a href="https://RAG-3D.github.io/">
-                      Phidias: A Generative Model for Creating 3D Content from Text, Image, and 3D Conditions with Reference-Augmented Diffusion
-              </a>
+                    <a href="https://RAG-3D.github.io/">
+                      Phidias: A Generative Model for Creating 3D Content from Text, Image, and 3D Conditions with
+                      Reference-Augmented Diffusion
+                    </a>
                   </h4>
-                  
+
                   <p class="pub-authors">
-              <strong>Zhenwei Wang*</strong>,
+                    <strong>Zhenwei Wang*</strong>,
                     Tengfei Wang*,
                     Zexin He,
                     Gerhard Hancke,
                     Ziwei Liu,
                     Rynson W.H. Lau
                   </p>
-                  
+
                   <p class="pub-venue">ICLR, April 2025</p>
-                  
+
                   <div class="text-links">
                     <a href="https://arxiv.org/abs/2409.11406" class="text-btn">arXiv</a>
                     <a href="https://RAG-3D.github.io/" class="text-btn">Project Page</a>
                     <a href="https://github.com/3DTopia/Phidias-Diffusion" class="text-btn">Code</a>
                     <a href="https://youtu.be/MFnHgBWI7Nc?si=TTt8UqUOU8ZHZDNq" class="text-btn">Video</a>
                   </div>
-                  
+
                   <p class="pub-description">
-                A 3D diffusion model with RAG, supporting 3D generation from text, image, and existing 3D models.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                    A 3D diffusion model with RAG, supporting 3D generation from text, image, and existing 3D models.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- ThemeStation Paper -->
         <div class="project-container">
           <table class="pub-table">
-        <tbody>
+            <tbody>
               <tr>
                 <td class="media-col">
                   <div class="conference-badge">SIGGRAPH 2024</div>
                   <div class="project-media">
                     <video width="100%" muted autoplay loop playsinline preload="metadata">
-                    <source src="videos/themestation.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                      <source src="videos/themestation.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
                     </video>
-              </div>
-            </td>
+                  </div>
+                </td>
                 <td class="content-col">
                   <h4 class="pub-title">
-              <a href="https://3dthemestation.github.io/">
+                    <a href="https://3dthemestation.github.io/">
                       ThemeStation: Generating Theme-Aware 3D Assets from Few Exemplars
-              </a>
+                    </a>
                   </h4>
-                  
+
                   <p class="pub-authors">
-              <strong>Zhenwei Wang</strong>,
+                    <strong>Zhenwei Wang</strong>,
                     Tengfei Wang,
                     Gerhard Hancke,
                     Ziwei Liu,
                     Rynson W.H. Lau
                   </p>
-                  
+
                   <p class="pub-venue">Proc. ACM SIGGRAPH, August 2024</p>
-                  
+
                   <div class="text-links">
                     <a href="https://arxiv.org/abs/2403.15383" class="text-btn">arXiv</a>
                     <a href="https://3dthemestation.github.io/" class="text-btn">Project Page</a>
                     <a href="https://github.com/3DTopia/ThemeStation" class="text-btn">Code</a>
                     <a href="https://youtu.be/q6afxQXRl_o?si=tTxzVfyxu5fblAWC" class="text-btn">Video</a>
                   </div>
-                  
+
                   <p class="pub-description">
-                Generate a gallery of 3D assets with consistent themes from a few exemplars.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                    Generate a gallery of 3D assets with consistent themes from a few exemplars.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- RRL Paper -->
         <div class="project-container">
           <table class="pub-table">
-        <tbody>
+            <tbody>
               <tr>
                 <td class="media-col">
                   <div class="conference-badge">AAAI 2024</div>
                   <div class="project-media">
                     <img src="images/rrl_0.png" width="100%" alt="RRL-Net Shadow Removal Project">
-                </div>
-            </td>
+                  </div>
+                </td>
                 <td class="content-col">
                   <h4 class="pub-title">
-              <a href="https://yuhaoliu7456.github.io/projects/RRL-Net/index.html">
+                    <a href="https://yuhaoliu7456.github.io/projects/RRL-Net/index.html">
                       Recasting Regional Lighting for Shadow Removal
                     </a>
                   </h4>
-                  
+
                   <p class="pub-authors">
                     Yuhao Liu,
                     Zhanghan ke,
                     Ke Xu,
                     Fang Liu,
-              <strong>Zhenwei Wang</strong>,
+                    <strong>Zhenwei Wang</strong>,
                     Rynson W.H. Lau
                   </p>
-                  
+
                   <p class="pub-venue">AAAI, February 2024</p>
-                  
+
                   <div class="text-links">
                     <a href="https://arxiv.org/abs/2402.00341" class="text-btn">arXiv</a>
-                    <a href="https://yuhaoliu7456.github.io/projects/RRL-Net/index.html" class="text-btn">Project Page</a>
+                    <a href="https://yuhaoliu7456.github.io/projects/RRL-Net/index.html" class="text-btn">Project
+                      Page</a>
                   </div>
-                  
+
                   <p class="pub-description">
-                    Shadow removal approach that corrects degraded textures in shadow regions conditioned on recovered illumination.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                    Shadow removal approach that corrects degraded textures in shadow regions conditioned on recovered
+                    illumination.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- LangRecol Paper -->
         <div class="project-container">
           <table class="pub-table">
-        <tbody>
+            <tbody>
               <tr>
                 <td class="media-col">
                   <div class="conference-badge">SIGGRAPH 2023</div>
                   <div class="project-media">
-                    <img src='images/langrecol.png' width="100%" alt="LangRecol Language-based Photo Recoloring">
-                </div>
-            </td>
+                    <img src='images/langrecol.jpg' width="100%" alt="LangRecol Language-based Photo Recoloring">
+                  </div>
+                </td>
                 <td class="content-col">
                   <h4 class="pub-title">
-              <a href="https://zhenwwang.github.io/langrecol">
+                    <a href="https://zhenwwang.github.io/langrecol">
                       Language-based Photo Color Adjustment for Graphic Designs
-              </a>
+                    </a>
                   </h4>
-                  
+
                   <p class="pub-authors">
-              <strong>Zhenwei Wang*</strong>,
+                    <strong>Zhenwei Wang*</strong>,
                     Nanxuan Zhao*,
                     Gerhard Hancke,
                     Rynson W.H. Lau
                   </p>
-                  
-                  <p class="pub-venue">ACM Trans. on Graphics (Proc. ACM SIGGRAPH 2023), August 2023</p>
-                  
+
+                  <p class="pub-venue">ACM Trans. on Graphics (Proc. ACM SIGGRAPH 2023, <span style="color: red;">Journal</span>), August 2023</p>
+
                   <div class="text-links">
                     <a href="https://arxiv.org/abs/2308.03059" class="text-btn">arXiv</a>
                     <a href="https://zhenwwang.github.io/langrecol" class="text-btn">Project Page</a>
                     <a href="https://youtu.be/AGHhK4XRwqk?si=Hd52rPwGEOaJyiFP" class="text-btn">Video</a>
                   </div>
-                  
-                  <p class="pub-description">
-                Present LangRecol, a novel language-based approach for recoloring photos in graphic designs.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-    </div>
 
-    <!-- Experience -->
+                  <p class="pub-description">
+                    Present LangRecol, a novel language-based approach for recoloring photos in graphic designs.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Experience -->
       <h2>Experience and Collaborations</h2>
       <div class="experience-section">
         <img src="images/experience.jpg" alt="Experience and Collaborations">
-    </div>
-    
-    <!-- Footer -->
+      </div>
+
+      <!-- Footer -->
       <footer>
         <p>
-        No.
-        <script type="text/javascript">
-          var sc_project = 12961588;
-          var sc_invisible = 0;
-          var sc_security = "86244e26";
-          var scJsHost = "https://";
-          document.write("<sc" + "ript type='text/javascript' src='" + scJsHost +
-            "statcounter.com/counter/counter.js'></" + "script>");
-        </script>
-        <noscript>
-          <div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img
-                class="statcounter" src="https://c.statcounter.com/12961588/0/86244e26/0/" alt="Web Analytics"
-                referrerPolicy="no-referrer-when-downgrade"></a></div>
-        </noscript>
+          No.
+          <script type="text/javascript">
+            var sc_project = 12961588;
+            var sc_invisible = 0;
+            var sc_security = "86244e26";
+            var scJsHost = "https://";
+            document.write("<sc" + "ript type='text/javascript' src='" + scJsHost +
+              "statcounter.com/counter/counter.js'></" + "script>");
+          </script>
+          <noscript>
+            <div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img
+                  class="statcounter" src="https://c.statcounter.com/12961588/0/86244e26/0/" alt="Web Analytics"
+                  referrerPolicy="no-referrer-when-downgrade"></a></div>
+          </noscript>
           visit | © Zhenwei (Zavier) Wang | Last updated: Aug. 2025
         </p>
-    </footer>
+      </footer>
     </section>
   </div>
 
@@ -1337,14 +1513,14 @@
     });
 
     // Navigation smooth scrolling
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const mobileNavLinks = document.querySelectorAll('.mobile-nav-item a');
-      
+
       mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
           e.preventDefault();
           const targetId = this.getAttribute('href').substring(1);
-          
+
           if (targetId === 'about') {
             // About跳转到页面顶部
             window.scrollTo({
@@ -1358,7 +1534,7 @@
               const navHeight = document.querySelector('.mobile-nav').offsetHeight;
               const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
               const offsetPosition = elementPosition - navHeight - 20; // 额外20px间距
-              
+
               window.scrollTo({
                 top: offsetPosition,
                 behavior: 'smooth'
@@ -1370,21 +1546,21 @@
     });
 
     // Back to top button functionality
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       const backToTopButton = document.getElementById('backToTop');
-      
+
       if (backToTopButton) {
         // Show/hide button based on scroll position
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
           if (window.pageYOffset > 300) {
             backToTopButton.classList.add('show');
           } else {
             backToTopButton.classList.remove('show');
           }
         });
-        
+
         // Click event to scroll to top
-        backToTopButton.addEventListener('click', function() {
+        backToTopButton.addEventListener('click', function () {
           window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -1393,91 +1569,91 @@
       }
     });
 
-      // Dundun click interaction for both desktop and mobile
-  document.addEventListener('DOMContentLoaded', function() {
-    const dundunBg = document.querySelector('.dundun-bg');
-    const dundunMessage = document.querySelector('.dundun-message');
-    
-    if (dundunBg && dundunMessage) {
-      // Initialize desktop visibility state
-      let desktopVisible = true; // Default state based on CSS
-      
-      // Unified click interaction - works for all screen sizes
-      dundunBg.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Check current window width to determine behavior
-        if (window.innerWidth <= 1060) {
-          // Small screen: toggle show class (mobile behavior)
-          dundunMessage.classList.toggle('show');
-        } else {
-          // Large screen: toggle visibility (desktop behavior)
-          desktopVisible = !desktopVisible;
-          if (desktopVisible) {
-            dundunMessage.style.display = 'block';
+    // Dundun click interaction for both desktop and mobile
+    document.addEventListener('DOMContentLoaded', function () {
+      const dundunBg = document.querySelector('.dundun-bg');
+      const dundunMessage = document.querySelector('.dundun-message');
+
+      if (dundunBg && dundunMessage) {
+        // Initialize desktop visibility state
+        let desktopVisible = true; // Default state based on CSS
+
+        // Unified click interaction - works for all screen sizes
+        dundunBg.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          // Check current window width to determine behavior
+          if (window.innerWidth <= 1060) {
+            // Small screen: toggle show class (mobile behavior)
+            dundunMessage.classList.toggle('show');
           } else {
-            dundunMessage.style.display = 'none';
-          }
-        }
-      });
-    }
-    
-    // Handle video playback on mobile
-    const videos = document.querySelectorAll('video[autoplay]');
-    let userInteracted = false;
-    
-    // Track user interaction
-    const markUserInteraction = () => {
-      userInteracted = true;
-      document.removeEventListener('touchstart', markUserInteraction);
-      document.removeEventListener('click', markUserInteraction);
-      document.removeEventListener('scroll', markUserInteraction);
-    };
-    
-    document.addEventListener('touchstart', markUserInteraction, { once: true });
-    document.addEventListener('click', markUserInteraction, { once: true });
-    document.addEventListener('scroll', markUserInteraction, { once: true });
-    
-    // Use Intersection Observer to play videos when they come into view
-    if ('IntersectionObserver' in window) {
-      const videoObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const video = entry.target;
-          if (entry.isIntersecting) {
-            // Try to play when video comes into view
-            if (userInteracted || !video.paused) {
-              video.play().catch(() => {
-                // Silent fail if can't play
-              });
+            // Large screen: toggle visibility (desktop behavior)
+            desktopVisible = !desktopVisible;
+            if (desktopVisible) {
+              dundunMessage.style.display = 'block';
+            } else {
+              dundunMessage.style.display = 'none';
             }
           }
         });
-      }, { threshold: 0.5 });
-      
-      videos.forEach(video => {
-        videoObserver.observe(video);
-        
-        // Also try immediate play
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Auto-play was prevented - this is normal on mobile
+      }
+
+      // Handle video playback on mobile
+      const videos = document.querySelectorAll('video[autoplay]');
+      let userInteracted = false;
+
+      // Track user interaction
+      const markUserInteraction = () => {
+        userInteracted = true;
+        document.removeEventListener('touchstart', markUserInteraction);
+        document.removeEventListener('click', markUserInteraction);
+        document.removeEventListener('scroll', markUserInteraction);
+      };
+
+      document.addEventListener('touchstart', markUserInteraction, { once: true });
+      document.addEventListener('click', markUserInteraction, { once: true });
+      document.addEventListener('scroll', markUserInteraction, { once: true });
+
+      // Use Intersection Observer to play videos when they come into view
+      if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              // Try to play when video comes into view
+              if (userInteracted || !video.paused) {
+                video.play().catch(() => {
+                  // Silent fail if can't play
+                });
+              }
+            }
           });
-        }
-      });
-    } else {
-      // Fallback for browsers without IntersectionObserver
-      videos.forEach(video => {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {
-            // Auto-play was prevented
-          });
-        }
-      });
-    }
-  });
+        }, { threshold: 0.5 });
+
+        videos.forEach(video => {
+          videoObserver.observe(video);
+
+          // Also try immediate play
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // Auto-play was prevented - this is normal on mobile
+            });
+          }
+        });
+      } else {
+        // Fallback for browsers without IntersectionObserver
+        videos.forEach(video => {
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {
+              // Auto-play was prevented
+            });
+          }
+        });
+      }
+    });
   </script>
 
 </body>
