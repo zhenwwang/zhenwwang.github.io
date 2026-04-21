@@ -16,19 +16,48 @@
     integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
   <link rel="icon" href="images/dundun_trans2.png">
 
+  <!-- Theme init (run before body paints to avoid flash) -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
     body {
       background-color: #fff;
       padding: 0px;
-      font: 14px/1.5 'Noto Sans SC', sans-serif;
-      color: #595959;
+      font: 14px/1.7 'Noto Sans SC', sans-serif;
+      color: #4a5568;
       font-weight: 400;
       margin: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .wrapper {
       width: 1060px;
       margin: 0 auto;
+      position: relative;
+    }
+
+    /* Subtle sidebar divider on desktop */
+    @media screen and (min-width: 1061px) {
+      .wrapper::before {
+        content: "";
+        position: fixed;
+        top: 6em;
+        bottom: 2em;
+        left: calc(50% - 530px + 260px);
+        width: 1px;
+        background: linear-gradient(180deg, transparent 0%, #e3eaf2 20%, #e3eaf2 80%, transparent 100%);
+        pointer-events: none;
+      }
     }
 
     /* Left sidebar header */
@@ -36,14 +65,14 @@
       width: 232px;
       float: left;
       position: fixed;
-      padding-top: 6.0em;
+      padding-top: 5.5em;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
-    /* Avatar styling - remove blue border */
+    /* Avatar styling - enlarged focal point with soft halo */
     .image {
       border-radius: 0.35em;
       border: 0;
@@ -53,29 +82,77 @@
 
     .image.avatar {
       border-radius: 100%;
-      margin: 0 0 1em 0;
-      width: 6.5em;
+      margin: 0 0 1.6em 0;
+      width: 10.5em;
+      position: relative;
+      transition: transform 0.4s ease;
+    }
+
+    .image.avatar::before {
+      content: "";
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(52, 152, 219, 0.24) 0%, rgba(52, 152, 219, 0.06) 55%, transparent 75%);
+      filter: blur(8px);
+      z-index: -1;
+      opacity: 0.9;
+      transition: opacity 0.4s ease;
     }
 
     .image.avatar img {
       border-radius: 100%;
       width: 100%;
       padding: 0;
-      /* Remove blue border */
+      box-shadow: 0 8px 24px rgba(52, 152, 219, 0.18),
+                  0 2px 6px rgba(44, 62, 80, 0.08);
+      transition: box-shadow 0.4s ease;
+    }
+
+    .image.avatar:hover {
+      transform: translateY(-2px);
+    }
+
+    .image.avatar:hover::before {
+      opacity: 1;
+    }
+
+    .image.avatar:hover img {
+      box-shadow: 0 12px 32px rgba(52, 152, 219, 0.28),
+                  0 4px 10px rgba(44, 62, 80, 0.1);
     }
 
     h1 {
-      font-weight: 500;
-      color: #2c3e50;
-      margin: 0 0 15px;
-      font-size: 22px;
+      font-weight: 700;
+      color: #1f2d3d;
+      margin: 0 0 6px;
+      font-size: 26px;
+      letter-spacing: -0.01em;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 28px;
+      height: 2px;
+      border-radius: 1px;
+      background: linear-gradient(90deg, #3498db, #5dade2);
     }
 
     .position {
-      font-size: 1.05rem;
-      color: #2c3e50;
+      font-size: 12px;
+      color: #7b8a9a;
       font-weight: 500;
-      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 8px;
+      margin-bottom: 6px;
     }
 
     .affiliation {
@@ -84,10 +161,21 @@
       margin-bottom: 3px;
       display: inline-block;
       font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s ease;
     }
 
     .affiliation:hover {
       color: #2980b9;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: #7b8a9a;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      font-style: italic;
+      letter-spacing: 0.02em;
     }
 
     email {
@@ -98,7 +186,7 @@
 
     /* Social icons - better layout */
     .social-icons {
-      margin: 8px 0;
+      margin: 10px 0;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -107,29 +195,28 @@
 
     .social-icons a {
       display: inline-block;
-      height: 2.2rem;
-      width: 2.2rem;
+      height: 2.1rem;
+      width: 2.1rem;
       background-color: transparent;
       color: #3498db;
       border-radius: 100%;
       text-align: center;
-      font-size: 1.1rem;
-      line-height: 2.2rem;
-      transition: all 0.3s ease;
+      font-size: 1.05rem;
+      line-height: 2.1rem;
+      transition: color 0.3s ease, background-color 0.3s ease;
     }
 
     .social-icons a:hover {
       background-color: #3498db;
       color: white;
-      transform: scale(1.1);
     }
 
     /* Research interests styling */
     .research-interests {
-      margin-top: 0px;
+      margin-top: 4px;
       text-align: left;
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.5;
       padding: 0 10px;
       width: 100%;
     }
@@ -138,6 +225,9 @@
       margin-bottom: 8px;
       font-weight: 600;
       color: #2c3e50;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .research-interests ul {
@@ -147,6 +237,7 @@
 
     .research-interests li {
       margin-bottom: 6px;
+      color: #5a6674;
     }
 
     /* Main content section */
@@ -157,27 +248,41 @@
       padding-bottom: 50px;
     }
 
-    /* Section headers */
+    /* Section headers — left accent bar instead of bottom rule */
     h2 {
-      color: #2c3e50;
-      font-weight: 500;
-      margin: 20px 0px 20px;
+      color: #1f2d3d;
+      font-weight: 600;
+      margin: 36px 0 20px;
       font-size: 20px;
-      border-bottom: 1px solid #e5e5e5;
-      padding-bottom: 8px;
+      border-bottom: none;
+      padding: 0 0 0 14px;
+      position: relative;
+      letter-spacing: -0.005em;
+    }
+
+    h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 3px;
+      border-radius: 2px;
+      background: linear-gradient(180deg, #3498db, #5dade2);
     }
 
     /* About section */
     .about-section {
-      margin-bottom: 30px;
+      margin-bottom: 32px;
       padding-top: 0;
     }
 
     .about-section p {
       text-align: justify;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.75;
+      color: #4a5568;
     }
 
     /* News section */
@@ -308,24 +413,26 @@
       display: inline-block;
       width: 90%;
       border-radius: 8px;
-      overflow: visible;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(44, 62, 80, 0.06);
+      transition: box-shadow 0.3s ease;
     }
 
     .project-media video,
     .project-media img {
-      border-radius: 6px !important;
+      border-radius: 8px !important;
       display: block;
       width: 100%;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
+    }
+
+    .project-media:hover {
+      box-shadow: 0 6px 22px rgba(52, 152, 219, 0.18);
     }
 
     .project-media:hover video,
     .project-media:hover img {
-      transform: scale(1.5);
-      z-index: 1000;
-      position: relative;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      border-radius: 8px;
+      transform: scale(1.03);
     }
 
     .media-col .conference-badge {
@@ -335,13 +442,15 @@
       width: auto;
       z-index: 10;
       display: inline-block;
-      background-color: #3498db !important;
+      background: linear-gradient(135deg, #3498db, #5dade2) !important;
       color: white !important;
-      padding: 6px 10px !important;
-      border-radius: 5px !important;
-      font-size: 11px !important;
-      font-weight: bold !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+      padding: 5px 10px !important;
+      border-radius: 4px !important;
+      font-size: 10px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(52, 152, 219, 0.35) !important;
       white-space: nowrap;
       line-height: 1 !important;
       box-sizing: border-box;
@@ -385,8 +494,9 @@
       margin-bottom: 8px !important;
       font-size: 15px;
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.35;
       transition: color 0.3s ease;
+      letter-spacing: -0.005em;
     }
 
     .pub-title a:hover {
@@ -394,7 +504,7 @@
     }
 
     .pub-title a {
-      color: #2c3e50;
+      color: #1f2d3d;
       text-decoration: none;
     }
 
@@ -404,9 +514,13 @@
 
     .pub-authors {
       margin-bottom: 8px !important;
-      color: #595959;
+      color: #5a6674;
       font-size: 13px;
-      line-height: 1.2;
+      line-height: 1.45;
+    }
+
+    .pub-authors strong {
+      color: #1f2d3d;
     }
 
     .pub-venue {
@@ -436,13 +550,14 @@
     .text-btn {
       background-color: transparent;
       color: #3498db;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border: 1px solid #3498db;
-      border-radius: 3px;
+      border-radius: 14px;
       text-decoration: none;
       font-size: 11px;
       font-weight: 500;
-      transition: all 0.3s ease;
+      letter-spacing: 0.02em;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .text-btn:hover {
@@ -549,15 +664,53 @@
       bottom: 180px;
       right: 50px;
       background: rgba(255, 255, 255, 0.95);
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 12px;
-      max-width: 180px;
+      max-width: 240px;
       font-size: 11px;
       color: #2c3e50;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       z-index: 999;
       border: 1px solid rgba(52, 152, 219, 0.4);
-      line-height: 1.4;
+      line-height: 1.45;
+    }
+
+    .dundun-close {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      width: 16px;
+      height: 16px;
+      line-height: 14px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #95a5a6;
+      background: transparent;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .dundun-close:hover {
+      color: #fff;
+      background: #e74c3c;
+    }
+
+    .dundun-message .paper-link {
+      display: inline-block;
+      margin-top: 6px;
+      color: #3498db;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .dundun-message .paper-link:hover {
+      color: #2980b9;
+      text-decoration: underline;
     }
 
     /* Desktop arrow for dundun message */
@@ -872,10 +1025,333 @@
         height: auto !important;
       }
     }
+
+    /* ==================================================================
+       Round 1 additions: publication filter tabs, news collapse, dundun
+       ================================================================== */
+
+    /* Publication year header */
+    .year-header {
+      font-size: 40px;
+      font-weight: 700;
+      color: #3498db;
+      margin: 28px 0 6px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      opacity: 0.32;
+      user-select: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .year-header.filter-hidden {
+      display: none;
+    }
+
+    /* Publication category filter tabs */
+    .pub-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 20px;
+    }
+
+    .filter-btn {
+      padding: 6px 14px;
+      font-size: 13px;
+      font-family: inherit;
+      background: transparent;
+      color: #3498db;
+      border: 1px solid #3498db;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background: #eaf5fc;
+    }
+
+    .filter-btn.active {
+      background: #3498db;
+      color: #fff;
+    }
+
+    .project-container.filter-hidden {
+      display: none;
+    }
+
+    /* News collapse */
+    .news-list .news-hidden {
+      display: none;
+    }
+
+    .news-list.expanded .news-hidden {
+      display: list-item;
+    }
+
+    .news-toggle {
+      margin-top: 8px;
+      padding: 4px 0;
+      background: none;
+      border: none;
+      color: #3498db;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .news-toggle:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    /* Dundun cat interactions */
+    .dundun-bg img {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .dundun-bg:hover img {
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    @keyframes dundun-wiggle {
+      0%, 100% { transform: rotate(0); }
+      25%      { transform: rotate(-6deg); }
+      75%      { transform: rotate(6deg); }
+    }
+
+    .dundun-bg img.wiggling {
+      animation: dundun-wiggle 0.6s ease;
+    }
+
+    /* ==================================================================
+       Theme toggle button (sun / moon)
+       ================================================================== */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 200;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(44, 62, 80, 0.12);
+      color: #2c3e50;
+      cursor: pointer;
+      font-size: 15px;
+      line-height: 36px;
+      text-align: center;
+      padding: 0;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(52, 152, 219, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* Mobile: sit inside the sticky nav bar on the right edge */
+    @media screen and (max-width: 1060px) {
+      .theme-toggle {
+        top: 6px;
+        right: 10px;
+        width: 30px;
+        height: 30px;
+        line-height: 28px;
+        font-size: 13px;
+      }
+    }
+
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: inline; }
+
+    /* ==================================================================
+       Dark mode overrides
+       ================================================================== */
+    html[data-theme="dark"] body {
+      background-color: #0f1721;
+      color: #c9d3df;
+    }
+
+    html[data-theme="dark"] h1,
+    html[data-theme="dark"] h2,
+    html[data-theme="dark"] .pub-title a,
+    html[data-theme="dark"] .pub-authors strong,
+    html[data-theme="dark"] .about-section p,
+    html[data-theme="dark"] .education-section,
+    html[data-theme="dark"] .news-list li,
+    html[data-theme="dark"] .education-list li,
+    html[data-theme="dark"] .education-list .degree,
+    html[data-theme="dark"] email,
+    html[data-theme="dark"] .position {
+      color: #e8edf4;
+    }
+
+    html[data-theme="dark"] .about-section p,
+    html[data-theme="dark"] .pub-authors {
+      color: #b4c0cf;
+    }
+
+    html[data-theme="dark"] .pub-venue,
+    html[data-theme="dark"] .pub-description,
+    html[data-theme="dark"] .tagline,
+    html[data-theme="dark"] .research-interests li,
+    html[data-theme="dark"] .news-list .news-content,
+    html[data-theme="dark"] .education-list .date {
+      color: #8596a9;
+    }
+
+    html[data-theme="dark"] .news-list li strong {
+      color: #e8edf4;
+    }
+
+    html[data-theme="dark"] .research-interests p {
+      color: #d8dee9;
+    }
+
+    html[data-theme="dark"] .pub-title a:hover {
+      color: #5dade2 !important;
+    }
+
+    html[data-theme="dark"] a {
+      color: #5dade2;
+    }
+
+    html[data-theme="dark"] a:hover {
+      color: #85c1e2;
+    }
+
+    html[data-theme="dark"] .affiliation {
+      color: #5dade2;
+    }
+
+    html[data-theme="dark"] .wrapper::before {
+      background: linear-gradient(180deg, transparent 0%, #26334a 20%, #26334a 80%, transparent 100%);
+    }
+
+    html[data-theme="dark"] .text-btn {
+      color: #5dade2;
+      border-color: #5dade2;
+    }
+
+    html[data-theme="dark"] .text-btn:hover {
+      background-color: #5dade2;
+      color: #0f1721;
+    }
+
+    html[data-theme="dark"] .filter-btn {
+      color: #5dade2;
+      border-color: #5dade2;
+    }
+
+    html[data-theme="dark"] .filter-btn:hover {
+      background: rgba(93, 173, 226, 0.15);
+    }
+
+    html[data-theme="dark"] .filter-btn.active {
+      background: #5dade2;
+      color: #0f1721;
+    }
+
+    html[data-theme="dark"] .year-header {
+      color: #5dade2;
+      opacity: 0.38;
+    }
+
+    html[data-theme="dark"] .project-media {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    html[data-theme="dark"] .project-media:hover {
+      box-shadow: 0 6px 22px rgba(93, 173, 226, 0.3);
+    }
+
+    html[data-theme="dark"] .social-icons a {
+      color: #5dade2;
+    }
+
+    html[data-theme="dark"] .social-icons a:hover {
+      background-color: #5dade2;
+      color: #0f1721;
+    }
+
+    html[data-theme="dark"] .mobile-nav {
+      background-color: rgba(15, 23, 33, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    html[data-theme="dark"] .mobile-nav-item a {
+      color: #c9d3df;
+    }
+
+    html[data-theme="dark"] .image.avatar img {
+      box-shadow: 0 8px 24px rgba(93, 173, 226, 0.25),
+                  0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    html[data-theme="dark"] .image.avatar::before {
+      background: radial-gradient(circle at 30% 30%, rgba(93, 173, 226, 0.35) 0%, rgba(93, 173, 226, 0.08) 55%, transparent 75%);
+    }
+
+    html[data-theme="dark"] .dundun-message {
+      background: rgba(21, 31, 46, 0.96);
+      color: #c9d3df;
+      border-color: rgba(93, 173, 226, 0.4);
+    }
+
+    html[data-theme="dark"] .dundun-message::after {
+      border-top-color: rgba(93, 173, 226, 0.4);
+    }
+
+    html[data-theme="dark"] .dundun-message::before {
+      border-top-color: rgba(21, 31, 46, 0.96);
+    }
+
+    html[data-theme="dark"] .dundun-close {
+      color: #8596a9;
+    }
+
+    html[data-theme="dark"] .paper-link {
+      color: #5dade2;
+    }
+
+    html[data-theme="dark"] .news-toggle {
+      color: #5dade2;
+    }
+
+    html[data-theme="dark"] .theme-toggle {
+      background: rgba(21, 31, 46, 0.85);
+      color: #f0d060;
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    html[data-theme="dark"] .theme-toggle:hover {
+      background: #1a2636;
+      box-shadow: 0 4px 14px rgba(240, 208, 96, 0.25);
+    }
+
+    html[data-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+    html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+    html[data-theme="dark"] h2::before {
+      background: linear-gradient(180deg, #5dade2, #85c1e2);
+    }
+
+    html[data-theme="dark"] h1::after {
+      background: linear-gradient(90deg, #5dade2, #85c1e2);
+    }
   </style>
 </head>
 
 <body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle dark mode">
+    <span class="icon-sun">&#9728;</span><span class="icon-moon">&#9790;</span>
+  </button>
   <div class="wrapper">
     <!-- Navigation -->
     <nav class="mobile-nav">
@@ -896,8 +1372,8 @@
       <h1>Zhenwei (Zavier) Wang</h1>
 
       <div class="position">Researcher</div>
-
-      <a href="https://hunyuan.tencent.com/" class="affiliation" rel="noopener">Tencent Hunyuan</a>
+      <a href="https://3d-models.hunyuan.tencent.com/world/" class="affiliation" rel="noopener">Tencent HY World</a>
+      <div class="tagline">Generative AI for 3D Worlds</div>
 
       <email>zwwang96[at]gmail.com</email>
 
@@ -933,7 +1409,7 @@
       <h2 id="about">About Me</h2>
       <div class="about-section">
         <p>
-          I am a researcher at Tencent Hunyuan, working in the world model team.
+          I am a researcher at Tencent Hunyuan, working on the <strong>HY World</strong> project.
           I received my Ph.D. degree from the Department of Computer Science, City University of Hong Kong (<a
             href="https://www.cityu.edu.hk/">CityU</a>),
           under the supervision of
@@ -945,7 +1421,7 @@
             Wang</a> and <a href="https://liuziwei7.github.io/">Ziwei Liu</a> from <a
             href="https://www.shlab.org.cn/">Shanghai AI Lab</a> and <a href="https://www.mmlab-ntu.com/">MMLab@NTU</a>.
           I was also lucky to closely collaborate with <a href="http://nxzhao.com/">Nanxuan Zhao</a> from Adobe
-          Research. 
+          Research.
         </p>
         <p>
           I'm interested in generative AI, including world models, video generation, 3D reconstruction, and 3D asset
@@ -973,23 +1449,24 @@
             <strong>[Feb. 2025]</strong>
             <span class="news-content">One paper accepted to CVPR 2025.</span>
           </li>
-          <li>
+          <li class="news-hidden">
             <strong>[Feb. 2025]</strong>
             <span class="news-content">One paper accepted to ICLR 2025. See you in Singapore!</span>
           </li>
-          <li>
+          <li class="news-hidden">
             <strong>[Apr. 2024]</strong>
             <span class="news-content">One paper accepted to SIGGRAPH 2024. See you in Denver!</span>
           </li>
-          <li>
+          <li class="news-hidden">
             <strong>[Dec. 2023]</strong>
             <span class="news-content">One paper accepted to AAAI 2024.</span>
           </li>
-          <li>
+          <li class="news-hidden">
             <strong>[Apr. 2023]</strong>
             <span class="news-content">One paper accepted to SIGGRAPH 2023 (journal track).</span>
           </li>
         </ul>
+        <button class="news-toggle" aria-expanded="false">Show all news &#9662;</button>
       </div>
 
       <!-- Experience Section -->
@@ -997,11 +1474,11 @@
       <div class="education-section">
         <ul class="education-list">
           <li>
-            <div class="degree">Researcher, Tencent Hunyuan3D, World Model Team</div>
+            <div class="degree">Researcher, Tencent HY World</div>
             <div class="date">08.2025 - Present</div>
           </li>
           <li>
-            <div class="degree">Research Intern, Tencent Hunyuan3D, World Model Team</div>
+            <div class="degree">Research Intern, Tencent HY World</div>
             <div class="date">04.2025 - 07.2025</div>
           </li>
           <li>
@@ -1019,7 +1496,7 @@
       <h2 id="projects">Open-Source Projects</h2>
       <div class="publications-section">
 
-        <!-- HY World 1.0 Project -->
+        <!-- HY World 2.0 Project -->
         <div class="project-container">
           <table class="pub-table">
             <tbody>
@@ -1028,7 +1505,7 @@
                   <div class="conference-badge">Technical Report</div>
                   <div class="project-media">
                     <video width="100%" muted autoplay loop playsinline preload="metadata">
-                      <source src="videos/HYWorld.mp4" type="video/mp4">
+                      <source src="videos/HYWorld_2.0.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
                   </div>
@@ -1036,7 +1513,7 @@
                 <td class="content-col">
                   <h4 class="pub-title">
                     <a href="https://3d-models.hunyuan.tencent.com/world/">
-                      HunyuanWorld 1.0: Generating Immersive, Explorable, and Interactive 3D Worlds from Words or Pixels
+                      HY-World 2.0 &#128293;
                     </a>
                   </h4>
 
@@ -1044,24 +1521,67 @@
                     Core Contributor
                   </p>
 
-                  <p class="pub-venue">Tencent Hunyuan3D, July 2025</p>
+                  <p class="pub-venue">Tencent HY World, April 2026</p>
 
                   <div class="text-links">
-                    <a href="https://arxiv.org/abs/2507.21809" class="text-btn">arXiv</a>
-                    <a href="https://3d.hunyuan.tencent.com/sceneTo3D" class="text-btn">Oneline Demo</a>
+                    <a href="https://arxiv.org/abs/2604.14268" class="text-btn">arXiv</a>
+                    <a href="https://3d.hunyuan.tencent.com/sceneTo3D" class="text-btn">Online Demo</a>
                     <a href="https://3d-models.hunyuan.tencent.com/world/" class="text-btn">Project Page</a>
-                    <a href="https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0" class="text-btn">Code</a>
+                    <a href="https://github.com/Tencent-Hunyuan/HY-World-2.0" class="text-btn">Code</a>
                   </div>
 
                   <p class="pub-description">
-                    Immersive and editable 3D scene generation from images or texts.
+                    Next-gen multi-modal world model that reconstructs, generates, and simulates 3D worlds.
                   </p>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        
+
+        <!-- HY World 1.5 Project -->
+        <div class="project-container">
+          <table class="pub-table">
+            <tbody>
+              <tr>
+                <td class="media-col">
+                  <div class="conference-badge">Technical Report</div>
+                  <div class="project-media">
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
+                      <source src="videos/HYWorld_1.5.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </td>
+                <td class="content-col">
+                  <h4 class="pub-title">
+                    <a href="https://3d-models.hunyuan.tencent.com/world/">
+                      HY-World 1.5
+                    </a>
+                  </h4>
+
+                  <p class="pub-authors">
+                    Core Contributor
+                  </p>
+
+                  <p class="pub-venue">Tencent HY World, December 2025</p>
+
+                  <div class="text-links">
+                    <a href="https://3d-models.hunyuan.tencent.com/world/world1_5/HYWorld_1.5_Tech_Report.pdf" class="text-btn">arXiv</a>
+                    <a href="https://3d.hunyuan.tencent.com/sceneTo3D" class="text-btn">Oneline Demo</a>
+                    <a href="https://3d-models.hunyuan.tencent.com/world/" class="text-btn">Project Page</a>
+                    <a href="https://github.com/Tencent-Hunyuan/HY-WorldPlay" class="text-btn">Code</a>
+                  </div>
+
+                  <p class="pub-description">
+                    The first open-source world model with real-time latency, long-term memory, and interactive control.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <!-- HY Wordl 1.1 Project -->
         <!-- <div class="project-container">
           <table class="pub-table">
@@ -1087,7 +1607,7 @@
                     Core Contributor
                   </p>
 
-                  <p class="pub-venue">Tencent Hunyuan3D, October 2025</p>
+                  <p class="pub-venue">Tencent HY World, October 2025</p>
 
                   <div class="text-links">
                     <a href="https://3d-models.hunyuan.tencent.com/world/worldMirror1_0/HYWorld_Mirror_Tech_Report.pdf" class="text-btn">arXiv</a>
@@ -1097,7 +1617,7 @@
                   </div>
 
                   <p class="pub-description">
-                    A fully open-source 3D world reconstruction model with any input and any output within a unified and feed-forward framework.
+                    Feed-forward 3D world reconstruction with unified any-input, any-output support.
                   </p>
                 </td>
               </tr>
@@ -1105,7 +1625,7 @@
           </table>
         </div> -->
 
-        <!-- HY World 1.5 Project -->
+        <!-- HY World 1.0 Project -->
         <div class="project-container">
           <table class="pub-table">
             <tbody>
@@ -1114,7 +1634,7 @@
                   <div class="conference-badge">Technical Report</div>
                   <div class="project-media">
                     <video width="100%" muted autoplay loop playsinline preload="metadata">
-                      <source src="videos/HYWorld_1.5.mp4" type="video/mp4">
+                      <source src="videos/HYWorld.mp4" type="video/mp4">
                       Your browser does not support the video tag.
                     </video>
                   </div>
@@ -1122,7 +1642,7 @@
                 <td class="content-col">
                   <h4 class="pub-title">
                     <a href="https://3d-models.hunyuan.tencent.com/world/">
-                      HY-World 1.5: A Systematic Framework for Interactive World Modeling with Real-Time Latency and Geometric Consistency
+                      HY-World 1.0
                     </a>
                   </h4>
 
@@ -1130,17 +1650,17 @@
                     Core Contributor
                   </p>
 
-                  <p class="pub-venue">Tencent Hunyuan3D, December 2025</p>
+                  <p class="pub-venue">Tencent HY World, July 2025</p>
 
                   <div class="text-links">
-                    <a href="https://3d-models.hunyuan.tencent.com/world/world1_5/HYWorld_1.5_Tech_Report.pdf" class="text-btn">arXiv</a>
+                    <a href="https://arxiv.org/abs/2507.21809" class="text-btn">arXiv</a>
                     <a href="https://3d.hunyuan.tencent.com/sceneTo3D" class="text-btn">Oneline Demo</a>
                     <a href="https://3d-models.hunyuan.tencent.com/world/" class="text-btn">Project Page</a>
-                    <a href="https://github.com/Tencent-Hunyuan/HY-WorldPlay" class="text-btn">Code</a>
+                    <a href="https://github.com/Tencent-Hunyuan/HunyuanWorld-1.0" class="text-btn">Code</a>
                   </div>
 
                   <p class="pub-description">
-                    The first Open-Source world model with real-time latency, long-term memory, interactive control, and long-horizon generation.
+                    Generate immersive, editable 3D scenes from text or a single image.
                   </p>
                 </td>
               </tr>
@@ -1151,11 +1671,62 @@
 
       <!-- Publications Section -->
       <h2 id="publications">Selected Publications</h2>
+      <div class="pub-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="worldmodel">World Model</button>
+        <button class="filter-btn" data-filter="3dgen">3D Generation</button>
+        <button class="filter-btn" data-filter="imgvid">Image &amp; Video</button>
+      </div>
       <div class="publications-section">
         <p>(*equal contribution, ^intern, †corresponding author)</p>
-        
+
+        <!-- HY World 2.0 Paper -->
+        <div class="year-header" data-year="2026">2026</div>
+        <div class="project-container" data-category="worldmodel">
+          <table class="pub-table">
+            <tbody>
+              <tr>
+                <td class="media-col">
+                  <div class="conference-badge">Technical Report</div>
+                  <div class="project-media">
+                    <video width="100%" muted autoplay loop playsinline preload="metadata">
+                      <source src="videos/HYWorld_2.0.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </td>
+                <td class="content-col">
+                  <h4 class="pub-title">
+                    <a href="https://arxiv.org/abs/2604.14268">
+                      HY-World 2.0: A Multi-Modal World Model for Reconstructing, Generating, and Simulating 3D Worlds
+                    </a>
+                  </h4>
+
+                  <p class="pub-authors">
+                    Core Contributor
+                  </p>
+
+                  <p class="pub-venue">Tencent HY World, April 2026</p>
+
+                  <div class="text-links">
+                    <a href="https://arxiv.org/abs/2604.14268" class="text-btn">arXiv</a>
+                    <a href="https://3d.hunyuan.tencent.com/sceneTo3D" class="text-btn">Online Demo</a>
+                    <a href="https://3d-models.hunyuan.tencent.com/world/" class="text-btn">Project Page</a>
+                    <a href="https://github.com/Tencent-Hunyuan/HY-World-2.0" class="text-btn">Code</a>
+                  </div>
+
+                  <p class="pub-description">
+                    Next-gen multi-modal world model that reconstructs, generates, and simulates 3D worlds.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <!-- WorldPlay Paper -->
-        <div class="project-container">
+        <div class="year-header" data-year="2025">2025</div>
+        <div class="project-container" data-category="worldmodel">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1198,7 +1769,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Real-time interactive world model with long-term memory.
+                    Real-time interactive world model with long-term geometric memory.
                   </p>
                 </td>
               </tr>
@@ -1207,7 +1778,7 @@
         </div>
 
         <!-- WorldMirror Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="worldmodel">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1248,7 +1819,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Universal and feed-forward 3D reconstruction with any input and any output.
+                    Universal feed-forward 3D reconstruction &mdash; any input, any output.
                   </p>
                 </td>
               </tr>
@@ -1257,7 +1828,7 @@
         </div>
 
         <!-- MOCA Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="3dgen">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1300,7 +1871,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Generating compositional 3D scenes and objectswith sparse mixture-of-components attention.
+                    Compositional 3D scene and object generation via sparse mixture-of-components attention.
                   </p>
                 </td>
               </tr>
@@ -1309,7 +1880,7 @@
         </div>
 
         <!-- StyleSculptor Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="3dgen">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1348,7 +1919,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Joint geometry and texture style-guided 3D asset generation in a training-free manner.
+                    Training-free 3D asset generation with joint geometry and texture style guidance.
                   </p>
                 </td>
               </tr>
@@ -1358,7 +1929,7 @@
 
 
         <!-- Voyager Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="worldmodel">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1402,7 +1973,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Long-range 3D world exploration with RGB-D(epth) video diffusion.
+                    Long-range 3D world exploration powered by RGB-D video diffusion.
                   </p>
                 </td>
               </tr>
@@ -1412,7 +1983,7 @@
 
 
         <!-- Shape-for-Motion Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="imgvid">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1450,7 +2021,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Diverse and precise video object manipulation with 3D proxy and diffusion rendering.
+                    Precise video object manipulation via 3D proxies and diffusion rendering.
                   </p>
                 </td>
               </tr>
@@ -1459,7 +2030,7 @@
         </div>
 
         <!-- MAGE Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="3dgen">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1498,7 +2069,7 @@
                   </div>
 
                   <p class="pub-description">
-                    A G-buffer estimation model for single image to high-quality material-aware 3D reconstruction.
+                    Single-image, material-aware 3D reconstruction via G-buffer estimation.
                   </p>
                 </td>
               </tr>
@@ -1507,7 +2078,7 @@
         </div>
 
         <!-- Phidias Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="3dgen">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1547,7 +2118,7 @@
                   </div>
 
                   <p class="pub-description">
-                    A 3D diffusion model with RAG, supporting 3D generation from text, image, and existing 3D models.
+                    Retrieval-augmented 3D diffusion &mdash; generate from text, image, or existing 3D assets.
                   </p>
                 </td>
               </tr>
@@ -1556,7 +2127,8 @@
         </div>
 
         <!-- ThemeStation Paper -->
-        <div class="project-container">
+        <div class="year-header" data-year="2024">2024</div>
+        <div class="project-container" data-category="3dgen">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1594,7 +2166,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Generate a gallery of 3D assets with consistent themes from a few exemplars.
+                    Generate theme-consistent 3D asset galleries from just a few exemplars.
                   </p>
                 </td>
               </tr>
@@ -1603,7 +2175,7 @@
         </div>
 
         <!-- RRL Paper -->
-        <div class="project-container">
+        <div class="project-container" data-category="imgvid">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1638,8 +2210,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Shadow removal approach that corrects degraded textures in shadow regions conditioned on recovered
-                    illumination.
+                    Shadow removal that restores degraded textures conditioned on recovered illumination.
                   </p>
                 </td>
               </tr>
@@ -1648,7 +2219,8 @@
         </div>
 
         <!-- LangRecol Paper -->
-        <div class="project-container">
+        <div class="year-header" data-year="2023">2023</div>
+        <div class="project-container" data-category="imgvid">
           <table class="pub-table">
             <tbody>
               <tr>
@@ -1681,7 +2253,7 @@
                   </div>
 
                   <p class="pub-description">
-                    Present LangRecol, a novel language-based approach for recoloring photos in graphic designs.
+                    Language-driven photo recoloring for graphic designs.
                   </p>
                 </td>
               </tr>
@@ -1752,8 +2324,9 @@
   </div>
 
   <div class="dundun-message">
-    <strong>Hi, I'm Dundun! 🐱</strong><br>
-    Welcome to my master's homepage. Hope you enjoy browsing through his amazing research work!
+    <button class="dundun-close" aria-label="Close">&times;</button>
+    <strong>Hi, I'm Dundun! &#128049;</strong><br>
+    Welcome! Click me for a random paper pick from Zavier's work!
   </div>
 
   <!-- JavaScript for smooth scrolling and mobile dundun interaction -->
@@ -1833,30 +2406,125 @@
     document.addEventListener('DOMContentLoaded', function () {
       const dundunBg = document.querySelector('.dundun-bg');
       const dundunMessage = document.querySelector('.dundun-message');
+      const dundunImg = document.querySelector('.dundun-bg img');
+
+      // Cat-themed English openers — paired with a randomly picked paper
+      const dundunOpeners = [
+        "Pst! &#128062; Check out this paper by Zavier:",
+        "Meow~ Zavier co-authored this one:",
+        "Paw-picked for you &#128049;:",
+        "Psst, want a paper rec? Try this:",
+        "Here's a paper I napped on &#128164;:",
+        "Zavier's work worth a read &#128218;:",
+        "&#128062; Today's cat-curated pick:",
+        "Mrow! Spotted this in Zavier's stack:"
+      ];
+
+      let lastOpenerIdx = -1;
+      let lastPaperIdx = -1;
+      let msgHideTimer = null;
+
+      function pickNoRepeat(arr, lastRef) {
+        let i;
+        do {
+          i = Math.floor(Math.random() * arr.length);
+        } while (i === lastRef.value && arr.length > 1);
+        lastRef.value = i;
+        return i;
+      }
+
+      function pickPaper() {
+        // Pull titles + links live from the DOM so the list stays in sync
+        const anchors = document.querySelectorAll('.publications-section .project-container .pub-title a');
+        if (!anchors.length) return null;
+        const ref = { value: lastPaperIdx };
+        const i = pickNoRepeat(anchors, ref);
+        lastPaperIdx = ref.value;
+        const a = anchors[i];
+        return {
+          title: (a.textContent || '').trim(),
+          href: a.getAttribute('href') || '#'
+        };
+      }
+
+      function pickOpener() {
+        const ref = { value: lastOpenerIdx };
+        const i = pickNoRepeat(dundunOpeners, ref);
+        lastOpenerIdx = ref.value;
+        return dundunOpeners[i];
+      }
+
+      function escapeHtml(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function closeDundunMessage() {
+        if (!dundunMessage) return;
+        clearTimeout(msgHideTimer);
+        dundunMessage.classList.remove('show');
+        dundunMessage.style.display = 'none';
+      }
 
       if (dundunBg && dundunMessage) {
-        // Initialize desktop visibility state
-        let desktopVisible = true; // Default state based on CSS
-
-        // Unified click interaction - works for all screen sizes
         dundunBg.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
 
-          // Check current window width to determine behavior
-          if (window.innerWidth <= 1060) {
-            // Small screen: toggle show class (mobile behavior)
-            dundunMessage.classList.toggle('show');
+          const paper = pickPaper();
+          const closeBtn = '<button class="dundun-close" aria-label="Close">&times;</button>';
+          if (paper) {
+            dundunMessage.innerHTML =
+              closeBtn +
+              '<strong>' + pickOpener() + '</strong><br>' +
+              '<em>' + escapeHtml(paper.title) + '</em><br>' +
+              '<a class="paper-link" href="' + paper.href + '" target="_blank" rel="noopener">&rarr; Read it</a>';
           } else {
-            // Large screen: toggle visibility (desktop behavior)
-            desktopVisible = !desktopVisible;
-            if (desktopVisible) {
-              dundunMessage.style.display = 'block';
-            } else {
-              dundunMessage.style.display = 'none';
-            }
+            dundunMessage.innerHTML = closeBtn + "<strong>Meow! &#128049; Welcome to Zavier's page!</strong>";
+          }
+
+          // Show it (works for both desktop and mobile via .show + inline display)
+          dundunMessage.classList.add('show');
+          dundunMessage.style.display = 'block';
+
+          // Auto-hide after 6s — need time to read the title
+          clearTimeout(msgHideTimer);
+          msgHideTimer = setTimeout(closeDundunMessage, 6000);
+        });
+
+        // Close button (delegated — new DOM each click)
+        dundunMessage.addEventListener('click', function (e) {
+          if (e.target.closest('.dundun-close')) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeDundunMessage();
+          } else {
+            // Clicks inside bubble (e.g. the paper link) should not bubble up to document
+            e.stopPropagation();
           }
         });
+
+        // Click anywhere outside the cat and the bubble to close
+        document.addEventListener('click', function (e) {
+          if (dundunMessage.style.display === 'none') return;
+          if (e.target.closest('.dundun-bg') || e.target.closest('.dundun-message')) return;
+          closeDundunMessage();
+        });
+
+        // Esc also closes
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeDundunMessage();
+        });
+      }
+
+      // Idle wiggle every 20s to attract attention
+      if (dundunImg) {
+        setInterval(function () {
+          if (document.hidden) return;
+          dundunImg.classList.add('wiggling');
+          setTimeout(function () {
+            dundunImg.classList.remove('wiggling');
+          }, 700);
+        }, 20000);
       }
 
       // Handle video playback on mobile
@@ -1913,6 +2581,70 @@
           }
         });
       }
+    });
+
+    // Publication category filter tabs
+    document.addEventListener('DOMContentLoaded', function () {
+      const filterBtns = document.querySelectorAll('.pub-filter .filter-btn');
+      const pubCards = document.querySelectorAll('.publications-section .project-container[data-category]');
+      const yearHeaders = document.querySelectorAll('.publications-section .year-header');
+      if (!filterBtns.length || !pubCards.length) return;
+
+      function updateYearHeaders() {
+        // Hide year headers that have no visible cards below them (before the next header).
+        yearHeaders.forEach(function (header) {
+          let node = header.nextElementSibling;
+          let hasVisible = false;
+          while (node && !node.classList.contains('year-header')) {
+            if (node.classList.contains('project-container') && !node.classList.contains('filter-hidden')) {
+              hasVisible = true;
+              break;
+            }
+            node = node.nextElementSibling;
+          }
+          header.classList.toggle('filter-hidden', !hasVisible);
+        });
+      }
+
+      filterBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const filter = btn.dataset.filter;
+          filterBtns.forEach(function (b) {
+            b.classList.toggle('active', b === btn);
+          });
+          pubCards.forEach(function (card) {
+            const cats = (card.dataset.category || '').split(/\s+/);
+            const matches = filter === 'all' || cats.indexOf(filter) !== -1;
+            card.classList.toggle('filter-hidden', !matches);
+          });
+          updateYearHeaders();
+        });
+      });
+    });
+
+    // News collapse: default 3 visible, toggle to show the rest
+    document.addEventListener('DOMContentLoaded', function () {
+      const newsToggle = document.querySelector('.news-toggle');
+      const newsList = document.querySelector('.news-list');
+      if (!newsToggle || !newsList) return;
+
+      newsToggle.addEventListener('click', function () {
+        const expanded = newsList.classList.toggle('expanded');
+        newsToggle.innerHTML = expanded ? 'Show less &#9652;' : 'Show all news &#9662;';
+        newsToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+      });
+    });
+
+    // Theme toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        const current = document.documentElement.getAttribute('data-theme') || 'light';
+        const next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
     });
   </script>
 
