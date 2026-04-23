@@ -439,7 +439,7 @@
     }
     /* First section right after hero — tighter top */
     .hero + main > section.block:first-child {
-      padding-top: 32px;
+      padding-top: 0;
     }
 
     .section-title {
@@ -481,7 +481,7 @@
     .news-date {
       font-family: var(--mono);
       font-size: 12.5px;
-      color: var(--text-4);
+      color: var(--text-2);
       letter-spacing: 0.02em;
       white-space: nowrap;
     }
@@ -527,7 +527,6 @@
 
     .media-thumb {
       position: relative;
-      aspect-ratio: 16 / 10;
       border-radius: 10px;
       overflow: hidden;
       background: var(--bg-soft);
@@ -536,9 +535,9 @@
     }
     .media-thumb video,
     .media-thumb img {
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       transition: transform 0.7s var(--ease-out-expo);
     }
     .media-item:hover .media-thumb {
@@ -885,7 +884,7 @@
       <div class="hero-main">
         <div class="hero-text">
           <h1 class="hero-name reveal">Zhenwei Wang</h1>
-          <p class="hero-tagline reveal reveal-1">Building generative AI for 3D world models</p>
+          <p class="hero-tagline reveal reveal-1">Building generative AI for 3D world models.</p>
           <div class="hero-rule reveal reveal-2"></div>
           <p class="hero-role reveal reveal-3">
             Researcher at Tencent Hunyuan, working on the <a href="https://3d-models.hunyuan.tencent.com/world/">HY&nbsp;World</a> model series.
@@ -948,7 +947,7 @@
             </div>
             <div class="media-body">
               <h3 class="media-title"><a href="https://3d-models.hunyuan.tencent.com/world/">HY-World 2.0 &#128293;</a></h3>
-              <p class="media-venue"><em>Technical Report</em>, 2026 &nbsp;&middot;&nbsp; Core Contributor</p>
+              <p class="media-venue"><em>Core Contributor, 2026</em></p>
               <p class="media-desc">Next-gen multi-modal world model that reconstructs, generates, and simulates 3D worlds.</p>
               <div class="media-links">
                 <a href="https://arxiv.org/abs/2604.14268">arXiv</a>
@@ -967,7 +966,7 @@
             </div>
             <div class="media-body">
               <h3 class="media-title"><a href="https://3d-models.hunyuan.tencent.com/world/">HY-World 1.5</a></h3>
-              <p class="media-venue"><em>Technical Report</em>, 2025 &nbsp;&middot;&nbsp; Core Contributor</p>
+              <p class="media-venue"><em>Core Contributor, 2025</em></p>
               <p class="media-desc">The first open-source world model with real-time latency, long-term memory, and interactive control.</p>
               <div class="media-links">
                 <a href="https://3d-models.hunyuan.tencent.com/world/world1_5/HYWorld_1.5_Tech_Report.pdf">Report</a>
@@ -985,7 +984,7 @@
             </div>
             <div class="media-body">
               <h3 class="media-title"><a href="https://3d-models.hunyuan.tencent.com/world/">HY-World 1.0</a></h3>
-              <p class="media-venue"><em>Technical Report</em>, 2025 &nbsp;&middot;&nbsp; Core Contributor</p>
+              <p class="media-venue"><em>Core Contributor, 2025</em></p>
               <p class="media-desc">Generate immersive, editable 3D scenes from text or a single image.</p>
               <div class="media-links">
                 <a href="https://arxiv.org/abs/2507.21809">arXiv</a>
@@ -1024,8 +1023,8 @@
               </div>
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2604.14268">HY-World 2.0: A Multi-Modal World Model for Reconstructing, Generating, and Simulating 3D Worlds</a></h3>
-                <p class="media-authors">Core Contributor</p>
-                <p class="media-venue"><em>Technical Report</em>, 2026</p>
+                <p class="media-authors"><strong>Core Contributor</strong></p>
+                <p class="media-venue"><em>Technical Report, 2026</em></p>
                 <p class="media-desc">Next-gen multi-modal world model that reconstructs, generates, and simulates 3D worlds.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2604.14268">arXiv</a>
@@ -1051,7 +1050,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2512.14614">WorldPlay: Towards Long-Term Geometric Consistency for Real-Time Interactive World Modeling</a></h3>
                 <p class="media-authors">Wenqiang Sun*^, Haiyu Zhang*^, Haoyuan Wang*, Junta Wu, Zehang Wang^, <strong>Zhenwei Wang</strong>, Yunhong Wang, Jun Zhang, Tengfei Wang†, Chunchao Guo</p>
-                <p class="media-venue"><em>Preprint</em>, 2025</p>
+                <p class="media-venue"><em>Preprint, 2025</em></p>
                 <p class="media-desc">Real-time interactive world model with long-term geometric memory.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2512.14614">arXiv</a>
@@ -1068,8 +1067,8 @@
               </div>
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2510.10726">WorldMirror: Universal 3D World Reconstruction with Any-Prior Prompting</a></h3>
-                <p class="media-authors">Yifan Liu*^, Zhiyuan Min*^, <strong>Zhenwei Wang</strong>*, Junta Wu, Tengfei Wang†, Yixuan Yuan, Yawei Luo, Chunchao Guo</p>
-                <p class="media-venue"><em>Preprint</em>, 2025</p>
+                <p class="media-authors">Yifan Liu*^, Zhiyuan Min*^, <strong>Zhenwei Wang*</strong>, Junta Wu, Tengfei Wang†, Yixuan Yuan, Yawei Luo, Chunchao Guo</p>
+                <p class="media-venue"><em>Preprint, 2025</em></p>
                 <p class="media-desc">Universal feed-forward 3D reconstruction &mdash; any input, any output.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2510.10726">arXiv</a>
@@ -1087,7 +1086,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2512.07628">MoCA: Mixture-of-Components Attention for Scalable Compositional 3D Generation</a></h3>
                 <p class="media-authors">Zhiqi Li^, Wenhuan Li^, Tengfei Wang†, <strong>Zhenwei Wang</strong>, Junta Wu, Haoyuan Wang, Yunhan Yang, Zehuan Huang, Yang Li, Peidong Liu, Chunchao Guo</p>
-                <p class="media-venue"><em>Preprint</em>, 2025</p>
+                <p class="media-venue"><em>Preprint, 2025</em></p>
                 <p class="media-desc">Compositional 3D scene and object generation via sparse mixture-of-components attention.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2512.07628">arXiv</a>
@@ -1104,7 +1103,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2509.13301">StyleSculptor: Zero-Shot Style-Controllable 3D Asset Generation with Texture-Geometry Dual Guidance</a></h3>
                 <p class="media-authors">Zefan Qu, <strong>Zhenwei Wang<sup>†</sup></strong>, Haoyuan Wang, Ke Xu, Gerhard Hancke, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>Proc. ACM SIGGRAPH Asia</em>, 2025</p>
+                <p class="media-venue"><em>Proc. ACM SIGGRAPH Asia, 2025</em></p>
                 <p class="media-desc">Training-free 3D asset generation with joint geometry and texture style guidance.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2509.13301">arXiv</a>
@@ -1121,7 +1120,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2506.04225">Voyager: Long-Range and World-Consistent Video Diffusion for Explorable 3D Scene Generation</a></h3>
                 <p class="media-authors">Tianyu Huang*, Wangguandong Zheng*, Tengfei Wang, Yuhao Liu, <strong>Zhenwei Wang</strong>, Junta Wu, Jie Jiang, Hui Li, Rynson W.H. Lau, Wangmeng Zuo, Chunchao Guo</p>
-                <p class="media-venue"><em>ACM TOG (Proc. SIGGRAPH 2025, Journal)</em>, 2025</p>
+                <p class="media-venue"><em>ACM TOG (Proc. SIGGRAPH 2025, Journal), 2025</em></p>
                 <p class="media-desc">Long-range 3D world exploration powered by RGB-D video diffusion.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2506.04225">arXiv</a>
@@ -1138,7 +1137,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2506.22432">Shape-for-Motion: Precise and Consistent Video Editing with 3D Proxy</a></h3>
                 <p class="media-authors">Yuhao Liu, Tengfei Wang, Fang Liu, <strong>Zhenwei Wang</strong>, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>Proc. ACM SIGGRAPH Asia</em>, 2025</p>
+                <p class="media-venue"><em>Proc. ACM SIGGRAPH Asia, 2025</em></p>
                 <p class="media-desc">Precise video object manipulation via 3D proxies and diffusion rendering.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2506.22432">arXiv</a>
@@ -1155,7 +1154,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://www.whyy.site/paper/mage">MAGE: Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model</a></h3>
                 <p class="media-authors">Haoyuan Wang*, <strong>Zhenwei Wang*</strong>, Xiaoxiao Long, Cheng Lin, Gerhard Hancke, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>CVPR</em>, 2025</p>
+                <p class="media-venue"><em>CVPR, 2025</em></p>
                 <p class="media-desc">Single-image, material-aware 3D reconstruction via G-buffer estimation.</p>
                 <div class="media-links">
                   <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MAGE__Single_Image_to_Material-Aware_3D_via_the_Multi-View_CVPR_2025_paper.pdf">PDF</a>
@@ -1172,7 +1171,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2409.11406">Phidias: A Generative Model for Creating 3D Content from Text, Image, and 3D Conditions with Reference-Augmented Diffusion</a></h3>
                 <p class="media-authors"><strong>Zhenwei Wang*</strong>, Tengfei Wang*, Zexin He, Gerhard Hancke, Ziwei Liu, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>ICLR</em>, 2025</p>
+                <p class="media-venue"><em>ICLR, 2025</em></p>
                 <p class="media-desc">Retrieval-augmented 3D diffusion &mdash; generate from text, image, or existing 3D assets.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2409.11406">arXiv</a>
@@ -1198,7 +1197,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2403.15383">ThemeStation: Generating Theme-Aware 3D Assets from Few Exemplars</a></h3>
                 <p class="media-authors"><strong>Zhenwei Wang</strong>, Tengfei Wang, Gerhard Hancke, Ziwei Liu, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>Proc. ACM SIGGRAPH</em>, 2024</p>
+                <p class="media-venue"><em>Proc. ACM SIGGRAPH, 2024</em></p>
                 <p class="media-desc">Generate theme-consistent 3D asset galleries from just a few exemplars.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2403.15383">arXiv</a>
@@ -1216,7 +1215,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2402.00341">Recasting Regional Lighting for Shadow Removal</a></h3>
                 <p class="media-authors">Yuhao Liu, Zhanghan Ke, Ke Xu, Fang Liu, <strong>Zhenwei Wang</strong>, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>AAAI</em>, 2024</p>
+                <p class="media-venue"><em>AAAI, 2024</em></p>
                 <p class="media-desc">Shadow removal that restores degraded textures conditioned on recovered illumination.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2402.00341">arXiv</a>
@@ -1240,7 +1239,7 @@
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2308.03059">Language-based Photo Color Adjustment for Graphic Designs</a></h3>
                 <p class="media-authors"><strong>Zhenwei Wang*</strong>, Nanxuan Zhao*, Gerhard Hancke, Rynson W.H. Lau</p>
-                <p class="media-venue"><em>ACM TOG (Proc. SIGGRAPH 2023, Journal)</em>, 2023</p>
+                <p class="media-venue"><em>ACM TOG (Proc. SIGGRAPH 2023, Journal), 2023</em></p>
                 <p class="media-desc">Language-driven photo recoloring for graphic designs.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2308.03059">arXiv</a>

@@ -1,1 +1,1 @@
-powered by Cursor.
+powered by Claude.
