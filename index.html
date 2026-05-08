@@ -918,9 +918,10 @@
         <h2 class="section-title reveal">News</h2>
         <div class="section-rule reveal reveal-1"></div>
         <ul class="news-list reveal reveal-2">
+          <li><span class="news-date">2026.05</span><span class="news-text">Three papers accepted to ICML 2026. See you in Seoul.</span></li>
           <li><span class="news-date">2026.04</span><span class="news-text">HY-World 2.0 is released!</span></li>
           <li><span class="news-date">2025.08</span><span class="news-text">Three papers accepted to SIGGRAPH Asia 2025. See you in Hong Kong.</span></li>
-          <li><span class="news-date">2025.08</span><span class="news-text">HY-World 1.0 is released.</span></li>
+          <li class="news-hidden"><span class="news-date">2025.08</span><span class="news-text">HY-World 1.0 is released.</span></li>
           <li class="news-hidden"><span class="news-date">2025.02</span><span class="news-text">One paper accepted to CVPR 2025.</span></li>
           <li class="news-hidden"><span class="news-date">2025.02</span><span class="news-text">One paper accepted to ICLR 2025. See you in Singapore.</span></li>
           <li class="news-hidden"><span class="news-date">2024.04</span><span class="news-text">One paper accepted to SIGGRAPH 2024. See you in Denver.</span></li>
@@ -1035,22 +1036,14 @@
               </div>
             </article>
 
-          </div>
-        </div>
-
-        <!-- 2025 -->
-        <div class="year-group" data-year="2025">
-          <div class="year-header"><span class="y">2025</span><span class="line"></span></div>
-          <div class="media-list">
-
             <article class="media-item" data-category="worldmodel">
               <div class="media-thumb">
                 <video muted autoplay loop playsinline preload="metadata"><source src="videos/worldplay.mp4" type="video/mp4"></video>
               </div>
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2512.14614">WorldPlay: Towards Long-Term Geometric Consistency for Real-Time Interactive World Modeling</a></h3>
-                <p class="media-authors">Wenqiang Sun*^, Haiyu Zhang*^, Haoyuan Wang*, Junta Wu, Zehang Wang^, <strong>Zhenwei Wang</strong>, Yunhong Wang, Jun Zhang, Tengfei Wang†, Chunchao Guo</p>
-                <p class="media-venue"><em>Preprint, 2025</em></p>
+                <p class="media-authors">Wenqiang Sun*^, Haiyu Zhang*^, Haoyuan Wang*, Junta Wu, Zehang Wang^, <strong>Zhenwei Wang</strong>, Yunhong Wang, Jun Zhang, Tengfei Wang&dagger;, Chunchao Guo</p>
+                <p class="media-venue"><em>ICML, 2026</em></p>
                 <p class="media-desc">Real-time interactive world model with long-term geometric memory.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2512.14614">arXiv</a>
@@ -1067,8 +1060,8 @@
               </div>
               <div class="media-body">
                 <h3 class="media-title"><a href="https://arxiv.org/abs/2510.10726">WorldMirror: Universal 3D World Reconstruction with Any-Prior Prompting</a></h3>
-                <p class="media-authors">Yifan Liu*^, Zhiyuan Min*^, <strong>Zhenwei Wang*</strong>, Junta Wu, Tengfei Wang†, Yixuan Yuan, Yawei Luo, Chunchao Guo</p>
-                <p class="media-venue"><em>Preprint, 2025</em></p>
+                <p class="media-authors">Yifan Liu*^, Zhiyuan Min*^, <strong>Zhenwei Wang*</strong>, Junta Wu, Tengfei Wang&dagger;, Yixuan Yuan, Yawei Luo, Chunchao Guo</p>
+                <p class="media-venue"><em>ICML, 2026</em></p>
                 <p class="media-desc">Universal feed-forward 3D reconstruction &mdash; any input, any output.</p>
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2510.10726">arXiv</a>
@@ -1078,6 +1071,31 @@
                 </div>
               </div>
             </article>
+
+            <article class="media-item" data-category="worldmodel">
+              <div class="media-thumb">
+                <img src="images/world_compass.png" alt="WorldCompass">
+              </div>
+              <div class="media-body">
+                <h3 class="media-title"><a href="https://arxiv.org/abs/2602.09022">WorldCompass: Reinforcement Learning for Long-Horizon World Models</a></h3>
+                <p class="media-authors">Zehan Wang^, Tengfei Wang&dagger;, Haiyu Zhang^, Xuhui Zuo, Junta Wu, Haoyuan Wang, Wenqiang Sun^, <strong>Zhenwei Wang</strong>, Chenjie Cao, Hengshuang Zhao, Chunchao Guo</p>
+                <p class="media-venue"><em>ICML, 2026</em></p>
+                <p class="media-desc">GRPO-style RL post-training for long-horizon interactive world models.</p>
+                <div class="media-links">
+                  <a href="https://arxiv.org/abs/2602.09022">arXiv</a>
+                  <a href="https://3d-models.hunyuan.tencent.com/world/">Project</a>
+                  <a class="star-link" href="https://github.com/Tencent-Hunyuan/HY-WorldPlay">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="Tencent-Hunyuan/HY-WorldPlay"><i class="fas fa-star star-icon"></i>...</span></a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- 2025 -->
+        <div class="year-group" data-year="2025">
+          <div class="year-header"><span class="y">2025</span><span class="line"></span></div>
+          <div class="media-list">
 
             <article class="media-item" data-category="3dgen">
               <div class="media-thumb">
@@ -1300,7 +1318,7 @@
 
   <footer>
     <div class="footer-inner">
-      <span>&copy; Zhenwei Wang &nbsp;&middot;&nbsp; Apr 2026</span>
+      <span>&copy; Zhenwei Wang &nbsp;&middot;&nbsp; May 2026</span>
       <span id="visitCount">
         <script type="text/javascript">
           var sc_project = 12961588;
