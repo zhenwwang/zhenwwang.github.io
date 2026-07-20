@@ -642,6 +642,116 @@
       color: var(--text-4);
     }
 
+    /* Cite button + BibTeX modal */
+    .media-links .cite-btn {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      color: var(--text-3);
+      background: none;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
+    }
+    .media-links .cite-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .bib-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(24, 24, 27, 0.55);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s var(--ease), visibility 0.2s var(--ease);
+    }
+    .bib-overlay.open { opacity: 1; visibility: visible; }
+    .bib-modal {
+      width: 100%;
+      max-width: 640px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      transform: translateY(8px) scale(0.98);
+      transition: transform 0.2s var(--ease);
+    }
+    .bib-overlay.open .bib-modal { transform: none; }
+    .bib-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .bib-title {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .bib-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--text-3);
+      cursor: pointer;
+      padding: 0 4px;
+      transition: color 0.2s var(--ease);
+    }
+    .bib-close:hover { color: var(--text); }
+    .bib-code {
+      margin: 0;
+      padding: 18px;
+      max-height: 58vh;
+      overflow: auto;
+      font-family: var(--mono);
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: var(--text-2);
+      white-space: pre;
+      background: var(--bg-soft);
+      cursor: pointer;
+    }
+    .bib-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      border-top: 1px solid var(--border-soft);
+    }
+    .bib-hint { font-size: 12px; color: var(--text-3); }
+    .bib-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s var(--ease);
+    }
+    .bib-copy-btn:hover { background: var(--accent-hover); }
+
     /* ==================================================================
        Publications — filter tabs + year groups
        ================================================================== */
@@ -1033,6 +1143,25 @@
                   <a href="https://3d.hunyuan.tencent.com/sceneTo3D">Demo</a>
                   <a href="https://3d-models.hunyuan.tencent.com/world/">Project</a>
                   <a class="star-link" href="https://github.com/Tencent-Hunyuan/HY-World-2.0">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="Tencent-Hunyuan/HY-World-2.0"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@techreport{hyworld2_2026,\n  title   = {HY-World 2.0: A Multi-Modal World Model for Reconstructing, Generating, and Simulating 3D Worlds},\n  author  = {Tencent HY World Team},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2604.14268}\n}">Cite</button>
+                </div>
+              </div>
+            </article>
+            
+            <article class="media-item" data-category="worldmodel">
+              <div class="media-thumb">
+                <video muted autoplay loop playsinline preload="metadata"><source src="videos/omnix.mp4" type="video/mp4"></video>
+              </div>
+              <div class="media-body">
+                <h3 class="media-title"><a href="https://arxiv.org/abs/2607.10840">OmniX: Any-view and Any-time 4D Reconstruction via Feed-forward Trajectory Fields</a></h3>
+                <p class="media-authors">Yanqin Jiang^, Tengfei Wang, <strong>Zhenwei Wang</strong>, Chenjie Cao, Junta Wu, Wenhan Luo, Weiming Hu, Jin Gao, Chunchao Guo</p>
+                <p class="media-venue"><em>ECCV, 2026</em></p>
+                <p class="media-desc">Feed-forward 4D reconstruction with per-pixel 3D point trajectories under large camera motion.</p>
+                <div class="media-links">
+                  <a href="https://arxiv.org/abs/2607.10840">arXiv</a>
+                  <a href="https://omnix4d.github.io/">Project</a>
+                  <a class="star-link" href="https://github.com/yanqinJiang/OmniX">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="yanqinJiang/OmniX"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@inproceedings{jiang2026omnix,\n  title     = {OmniX: Any-view and Any-time 4D Reconstruction via Feed-forward Trajectory Fields},\n  author    = {Jiang, Yanqin and Wang, Tengfei and Wang, Zhenwei and Cao, Chenjie and Wu, Junta and Luo, Wenhan and Hu, Weiming and Gao, Jin and Guo, Chunchao},\n  booktitle = {ECCV},\n  year      = {2026}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1051,6 +1180,7 @@
                   <a href="https://3d-models.hunyuan.tencent.com/world/">Project</a>
                   <a href="https://3d.hunyuan.tencent.com/sceneTo3D">Demo</a>
                   <a class="star-link" href="https://github.com/Tencent-Hunyuan/HY-WorldPlay">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="Tencent-Hunyuan/HY-WorldPlay"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@article{sun2025worldplay,\n  title   = {WorldPlay: Towards Long-Term Geometric Consistency for Real-Time Interactive World Modeling},\n  author  = {Sun, Wenqiang and Zhang, Haiyu and Wang, Haoyuan and Wu, Junta and Wang, Zehang and Wang, Zhenwei and Wang, Yunhong and Zhang, Jun and Wang, Tengfei and Guo, Chunchao},\n  journal = {arXiv preprint arXiv:2512.14614},\n  year    = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1069,6 +1199,7 @@
                   <a href="https://3d-models.hunyuan.tencent.com/world/">Project</a>
                   <a href="https://huggingface.co/spaces/tencent/HunyuanWorld-Mirror">Demo</a>
                   <a class="star-link" href="https://github.com/Tencent-Hunyuan/HunyuanWorld-Mirror">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="Tencent-Hunyuan/HunyuanWorld-Mirror"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@article{liu2025worldmirror,\n  title   = {WorldMirror: Universal 3D World Reconstruction with Any-Prior Prompting},\n  author  = {Liu, Yifan and Min, Zhiyuan and Wang, Zhenwei and Wu, Junta and Wang, Tengfei and Yuan, Yixuan and Luo, Yawei and Guo, Chunchao},\n  journal = {arXiv preprint arXiv:2510.10726},\n  year    = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1086,10 +1217,10 @@
                   <a href="https://arxiv.org/abs/2602.09022">arXiv</a>
                   <a href="https://3d-models.hunyuan.tencent.com/world/">Project</a>
                   <a class="star-link" href="https://github.com/Tencent-Hunyuan/HY-WorldPlay">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="Tencent-Hunyuan/HY-WorldPlay"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@article{wang2026worldcompass,\n  title   = {WorldCompass: Reinforcement Learning for Long-Horizon World Models},\n  author  = {Wang, Zehan and Wang, Tengfei and Zhang, Haiyu and Zuo, Xuhui and Wu, Junta and Wang, Haoyuan and Sun, Wenqiang and Wang, Zhenwei and Cao, Chenjie and Zhao, Hengshuang and Guo, Chunchao and Zhao, Zhou},\n  journal = {arXiv preprint arXiv:2602.09022},\n  year    = {2026}\n}">Cite</button>
                 </div>
               </div>
             </article>
-
           </div>
         </div>
 
@@ -1111,6 +1242,7 @@
                   <a href="https://arxiv.org/abs/2512.07628">arXiv</a>
                   <a href="https://lizhiqi49.github.io/MoCA/">Project</a>
                   <a class="star-link" href="https://github.com/lizhiqi49/MoCA">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="lizhiqi49/MoCA"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@article{li2025moca,\n  title   = {MoCA: Mixture-of-Components Attention for Scalable Compositional 3D Generation},\n  author  = {Li, Zhiqi and Li, Wenhuan and Wang, Tengfei and Wang, Zhenwei and Wu, Junta and Wang, Haoyuan and Yang, Yunhan and Huang, Zehuan and Li, Yang and Liu, Peidong and Guo, Chunchao},\n  journal = {arXiv preprint arXiv:2512.07628},\n  year    = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1128,6 +1260,7 @@
                   <a href="https://arxiv.org/abs/2509.13301">arXiv</a>
                   <a href="https://stylesculptor.github.io">Project</a>
                   <a class="star-link" href="https://github.com/quzefan/StyleSculptor/">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="quzefan/StyleSculptor"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@article{qu2025stylesculptor,\n  title   = {StyleSculptor: Zero-Shot Style-Controllable 3D Asset Generation with Texture-Geometry Dual Guidance},\n  author  = {Qu, Zefan and Wang, Zhenwei and Wang, Haoyuan and Xu, Ke and Hancke, Gerhard and Lau, Rynson W.H.},\n  journal = {arXiv preprint arXiv:2509.13301},\n  year    = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1145,6 +1278,7 @@
                   <a href="https://arxiv.org/abs/2506.04225">arXiv</a>
                   <a href="https://3d-models.hunyuan.tencent.com/world/">Project</a>
                   <a class="star-link" href="https://github.com/Tencent-Hunyuan/HunyuanWorld-Voyager">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="Tencent-Hunyuan/HunyuanWorld-Voyager"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@article{huang2025voyager,\n  title   = {Voyager: Long-Range and World-Consistent Video Diffusion for Explorable 3D Scene Generation},\n  author  = {Huang, Tianyu and Zheng, Wangguandong and Wang, Tengfei and Liu, Yuhao and Wang, Zhenwei and Wu, Junta and Jiang, Jie and Li, Hui and Lau, Rynson W.H. and Zuo, Wangmeng and Guo, Chunchao},\n  journal = {ACM Transactions on Graphics (SIGGRAPH Asia)},\n  year    = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1162,6 +1296,7 @@
                   <a href="https://arxiv.org/abs/2506.22432">arXiv</a>
                   <a href="https://shapeformotion.github.io/">Project</a>
                   <a class="star-link" href="https://github.com/yuhaoliu7456/Shape-for-Motion">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="yuhaoliu7456/Shape-for-Motion"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@inproceedings{liu2025shapeformotion,\n  title     = {Shape-for-Motion: Precise and Consistent Video Editing with 3D Proxy},\n  author    = {Liu, Yuhao and Wang, Tengfei and Liu, Fang and Wang, Zhenwei and Lau, Rynson W.H.},\n  booktitle = {ACM SIGGRAPH Asia},\n  year      = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1179,6 +1314,7 @@
                   <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Wang_MAGE__Single_Image_to_Material-Aware_3D_via_the_Multi-View_CVPR_2025_paper.pdf">PDF</a>
                   <a href="https://www.whyy.site/paper/mage">Project</a>
                   <a class="star-link" href="https://github.com/onpix/mage">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="onpix/mage"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@inproceedings{wang2025mage,\n  title     = {MAGE: Single Image to Material-Aware 3D via the Multi-View G-Buffer Estimation Model},\n  author    = {Wang, Haoyuan and Wang, Zhenwei and Long, Xiaoxiao and Lin, Cheng and Hancke, Gerhard and Lau, Rynson W.H.},\n  booktitle = {CVPR},\n  year      = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1197,6 +1333,7 @@
                   <a href="https://RAG-3D.github.io/">Project</a>
                   <a href="https://youtu.be/MFnHgBWI7Nc?si=TTt8UqUOU8ZHZDNq">Video</a>
                   <a class="star-link" href="https://github.com/3DTopia/Phidias-Diffusion">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="3DTopia/Phidias-Diffusion"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@inproceedings{wang2025phidias,\n  title     = {Phidias: A Generative Model for Creating 3D Content from Text, Image, and 3D Conditions with Reference-Augmented Diffusion},\n  author    = {Wang, Zhenwei and Wang, Tengfei and He, Zexin and Hancke, Gerhard and Liu, Ziwei and Lau, Rynson W.H.},\n  booktitle = {ICLR},\n  year      = {2025}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1223,6 +1360,7 @@
                   <a href="https://3dthemestation.github.io/">Project</a>
                   <a href="https://youtu.be/q6afxQXRl_o?si=tTxzVfyxu5fblAWC">Video</a>
                   <a class="star-link" href="https://github.com/3DTopia/ThemeStation">Code <span class="star-sep">&middot;</span> <span class="star-count" data-repo="3DTopia/ThemeStation"><i class="fas fa-star star-icon"></i>...</span></a>
+                  <button class="cite-btn" data-bibtex="@inproceedings{wang2024themestation,\n  title     = {ThemeStation: Generating Theme-Aware 3D Assets from Few Exemplars},\n  author    = {Wang, Zhenwei and Wang, Tengfei and Hancke, Gerhard and Liu, Ziwei and Lau, Rynson W.H.},\n  booktitle = {ACM SIGGRAPH},\n  year      = {2024}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1239,6 +1377,7 @@
                 <div class="media-links">
                   <a href="https://arxiv.org/abs/2402.00341">arXiv</a>
                   <a href="https://yuhaoliu7456.github.io/projects/RRL-Net/index.html">Project</a>
+                  <button class="cite-btn" data-bibtex="@inproceedings{liu2024recasting,\n  title     = {Recasting Regional Lighting for Shadow Removal},\n  author    = {Liu, Yuhao and Ke, Zhanghan and Xu, Ke and Liu, Fang and Wang, Zhenwei and Lau, Rynson W.H.},\n  booktitle = {AAAI},\n  year      = {2024}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1264,6 +1403,7 @@
                   <a href="https://arxiv.org/abs/2308.03059">arXiv</a>
                   <a href="https://zhenwwang.github.io/langrecol">Project</a>
                   <a href="https://youtu.be/AGHhK4XRwqk?si=Hd52rPwGEOaJyiFP">Video</a>
+                  <button class="cite-btn" data-bibtex="@article{wang2023language,\n  title   = {Language-Based Photo Color Adjustment for Graphic Designs},\n  author  = {Wang, Zhenwei and Zhao, Nanxuan and Hancke, Gerhard and Lau, Rynson W.H.},\n  journal = {ACM Transactions on Graphics (SIGGRAPH)},\n  volume  = {42},\n  number  = {4},\n  year    = {2023},\n  doi     = {10.1145/3592111}\n}">Cite</button>
                 </div>
               </div>
             </article>
@@ -1332,6 +1472,20 @@
       </span>
     </div>
   </footer>
+
+  <div class="bib-overlay" id="bibOverlay">
+    <div class="bib-modal">
+      <div class="bib-header">
+        <span class="bib-title">BibTeX Citation</span>
+        <button class="bib-close" id="bibClose" aria-label="Close">&times;</button>
+      </div>
+      <pre class="bib-code" id="bibCode"></pre>
+      <div class="bib-footer">
+        <span class="bib-hint">Click the text to copy</span>
+        <button class="bib-copy-btn" id="bibCopy"><i class="fas fa-copy"></i> Copy BibTeX</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Theme toggle
@@ -1454,6 +1608,51 @@
           })
           .catch(function () {});
       });
+    })();
+
+    // BibTeX cite modal
+    (function () {
+      var overlay = document.getElementById('bibOverlay');
+      var codeEl = document.getElementById('bibCode');
+      var closeBtn = document.getElementById('bibClose');
+      var copyBtn = document.getElementById('bibCopy');
+      if (!overlay || !codeEl) return;
+
+      function open(bib) {
+        codeEl.textContent = bib;
+        overlay.classList.add('open');
+        resetCopy();
+      }
+      function close() { overlay.classList.remove('open'); }
+      function resetCopy() { copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy BibTeX'; }
+      function copy() {
+        var text = codeEl.textContent;
+        var done = function () {
+          copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+          setTimeout(resetCopy, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done).catch(function () {});
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); done(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      }
+
+      document.querySelectorAll('.cite-btn[data-bibtex]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          open(btn.getAttribute('data-bibtex').replace(/\\n/g, '\n'));
+        });
+      });
+      closeBtn.addEventListener('click', close);
+      copyBtn.addEventListener('click', copy);
+      codeEl.addEventListener('click', copy);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
     })();
   </script>
 </body>
